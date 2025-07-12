@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+run='i3-msg exec'
+lock='i3lock-fancy -n && $temporarily_run xmodmap ~/.xmodmaprc'
+xmodmap ~/.xmodmaprc
+$run blueman-applet
+$run gnome-keyring-daemon --start --components=secrets
+#keynav
+$run mpris-proxy
+sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
+$run unclutter
+$run xss-lock --transfer-sleep-lock --ignore-sleep -- $lock
+#$run barrier

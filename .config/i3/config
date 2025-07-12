@@ -1,0 +1,439 @@
+# i3 config file (v4)
+# vim:noet:ts=32:sts=32
+
+set $mod Mod4
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:VIIII"
+set $ws10 "10:X"
+
+# Alias
+set $brightness echo $(xbacklight -get)% > ~/.config/i3status/brightness
+#set $lock i3lock -i ~/.config/i3/wallpaper -c 272A34 -e -f -n
+set $lock bash ~/.config/i3/modules/lock
+set $refresh_i3status killall -SIGUSR1 i3status
+set $temporarily_run lxterminal -t temporary -e
+# Default Applications
+set $browser firefox
+#set $browser chromium --password-store=gnome
+set $terminal lxterminal
+
+font pango:Roboto 12
+
+exec        $temporarily_run bash ~/.config/i3/modules/startup
+exec_always ~/.fehbg
+exec_always $temporarily_run bash ~/.config/i3/modules/restart
+#   exec --no-startup-id blueman-applet
+#   exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+#   exec --no-startup-id keynav
+#   exec --no-startup-id mpris-proxy
+#   exec --no-startup-id sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
+#   exec --no-startup-id unclutter -grab
+#   exec --no-startup-id xss-lock --transfer-sleep-lock --ignore-sleep -- $lock
+#exec --no-startup-id \
+                    #xrandr --output eDP --primary --mode 1366x768 --pos 1920x0 --rotate normal --output HDMI-A-0 --mode 1920x1080 --pos 0x0 --rotate normal
+                    #xrandr --output eDP --off                                                  --output HDMI-A-0 --mode 1920x1080 --pos 0x0 --rotate normal
+                    #xrandr --output HDMI-A-0 --off                                             --output eDP      --mode 1366x768  --pos 0x0 --rotate normal
+#exec --no-startup-id systemctl --user start resume.service
+
+#   exec_always --no-startup-id pkill picom && picom
+#   exec_always --no-startup-id pkill v2ray && cgnoproxy qv2ray
+
+#   exec_always --no-startup-id xrdb ~/.Xresources
+#   exec_always --no-startup-id ~/.fehbg
+
+#   exec_always --no-startup-id blueman-tray
+#   exec_always --no-startup-id deadd-notification-center
+#exec_always --no-startup-id $temporarily_run xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+#   exec_always --no-startup-id $temporarily_run xinput float $(xinput list | grep AT | awk '{sub(".*id=", ""); print $1}')
+#exec_always --no-startup-id exec "xmodmap -e 'clear Lock' -e 'keycode 0x42=Tab' && exit"
+#   exec_always --no-startup-id fcitx
+#   exec_always --no-startup-id nm-applet
+#   exec_always --no-startup-id picom
+#   exec_always --no-startup-id cgnoproxy qv2ray
+#   exec_always --no-startup-id $temporarily_run xmodmap ~/.xmodmaprc
+
+bindsym XF86MonBrightnessUp	exec --no-startup-id sudo xbacklight -inc 4 && $brightness && $refresh_i3status
+bindsym XF86MonBrightnessDown	exec --no-startup-id sudo xbacklight -dec 5 && $brightness && $refresh_i3status
+bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@   +5%
+bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@   -5%
+bindsym XF86AudioMute	exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@   toggle
+
+bindsym $mod+Ctrl+bracketright	exec --no-startup-id sudo xbacklight -inc 4 && $brightness && $refresh_i3status
+bindsym $mod+Ctrl+bracketleft	exec --no-startup-id sudo xbacklight -dec 5 && $brightness && $refresh_i3status
+bindsym $mod+Ctrl+apostrophe	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@   +5%
+bindsym $mod+Ctrl+semicolon	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@   -5%
+bindsym $mod+Ctrl+m	exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@   toggle
+
+bindsym XF86AudioMicMute	exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay	exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext	exec --no-startup-id playerctl next
+bindsym XF86AudioPrev	exec --no-startup-id playerctl previous
+
+bindsym $mod+q	kill
+bindsym $mod+c	restart
+bindsym $mod+Shift+c	reload
+#bindsym $mod+Control+c	exec i3-nagbar -t warning -m 'Exit i3?' -B 'Y' 'i3-msg exit'
+bindsym $mod+Control+c	exec i3-input -F 'rename workspace to "%s"' -P 'New name of current workspace: '
+bindsym $mod+d	exec echo -n $(date '+%Y-%m-%d') | xsel -b
+bindsym $mod+r	exec rofi -show drun
+bindsym $mod+t	exec echo -n $(date '+%Y-%m-%d %H:%M:%S') | xsel -b
+bindsym $mod+Return	exec i3-sensible-terminal
+bindsym $mod+Control+Return	exec urxvt
+
+bindsym $mod+f	fullscreen toggle
+bindsym $mod+s	sticky toggle
+bindsym $mod+w	layout tabbed
+bindsym $mod+e	layout toggle split
+bindsym $mod+Control+e	exec i3-msg exit
+bindsym $mod+v	split v
+bindsym $mod+Shift+v	split h
+bindsym $mod+b	bar mode invisible
+bindsym $mod+Shift+b	bar mode dock
+bindsym $mod+Shift+space	floating toggle
+ floating_modifier	$mod
+
+bindsym $mod+z	focus mode_toggle
+bindsym $mod+Shift+z	focus parent
+bindsym $mod+Control+z	focus child
+
+bindsym $mod+Shift+w	exec $temporarily_run SS u
+bindsym $mod+Shift+t	exec telegram-desktop
+bindsym $mod+Control+u	exec lxterminal -t system-upgrade -e "yay && sleep 5"
+bindsym $mod+Control+p	exec gcolor3
+bindsym $mod+Control+s	exec $temporarily_run "sleep 1 && xset -display :1 dpms force off && sleep 2 && systemctl suspend"
+bindsym $mod+Shift+d	execdiscord --proxy-server="socks5://127.0.0.1:1089"
+bindsym $mod+Shift+f	exec scrot -e 'mv "$f" ~/Pictures/' "Screenshot_%Y%m%d-%H%M%S_Workspace$(expr $(xdotool get_desktop) + 1).png"
+bindsym $mod+Control+l	exec $lock
+bindsym $mod+Control+v	exec Viper switch && $refresh_i3status
+bindsym $mod+Control+b	exec blueman-manager
+bindsym $mod+h	focus left
+bindsym $mod+j	focus down
+bindsym $mod+k	focus up
+bindsym $mod+l	focus right
+bindsym $mod+Shift+h	move left
+bindsym $mod+Shift+j	move down
+bindsym $mod+Shift+k	move up
+bindsym $mod+Shift+l	move right
+bindsym $mod+Left	move container to output left
+bindsym $mod+Down	move container to output down
+bindsym $mod+Up	move container to output up
+bindsym $mod+Right	move container to output right
+bindsym $mod+Shift+Left	move workspace to output left
+bindsym $mod+Shift+Down	move workspace to output down
+bindsym $mod+Shift+Up	move workspace to output up
+bindsym $mod+Shift+Right	move workspace to output right
+
+bindsym $mod+1	workspace number $ws1
+bindsym $mod+2	workspace number $ws2
+bindsym $mod+3	workspace number $ws3
+bindsym $mod+4	workspace number $ws4
+bindsym $mod+5	workspace number $ws5
+bindsym $mod+6	workspace number $ws6
+bindsym $mod+7	workspace number $ws7
+bindsym $mod+8	workspace number $ws8
+bindsym $mod+9	workspace number $ws9
+bindsym $mod+0	workspace number $ws10
+bindsym $mod+Shift+1	move container to workspace number $ws1
+bindsym $mod+Shift+2	move container to workspace number $ws2
+bindsym $mod+Shift+3	move container to workspace number $ws3
+bindsym $mod+Shift+4	move container to workspace number $ws4
+bindsym $mod+Shift+5	move container to workspace number $ws5
+bindsym $mod+Shift+6	move container to workspace number $ws6
+bindsym $mod+Shift+7	move container to workspace number $ws7
+bindsym $mod+Shift+8	move container to workspace number $ws8
+bindsym $mod+Shift+9	move container to workspace number $ws9
+bindsym $mod+Shift+10	move container to workspace number $ws10
+
+mode "Move Window" {
+  bindsym h	move left  1  px
+  bindsym j	move down  1  px
+  bindsym k	move up    1  px
+  bindsym l	move right 1  px
+
+  bindsym Shift+h	move left  10 px
+  bindsym Shift+j	move down  10 px
+  bindsym Shift+k	move up    10 px
+  bindsym Shift+l	move right 10 px
+
+  bindsym Control+h	move left  50 px
+  bindsym Control+j	move down  50 px
+  bindsym Control+k	move up    50 px
+  bindsym Control+l	move right 50 px
+
+  bindsym r	move position center
+  bindsym Shift+r	move absolute position center
+
+  bindsym q	mode "default"
+  bindsym Return	mode "default"
+  bindsym Escape	mode "default"
+
+  bindsym $mod+Shift+e	mode "default"
+  bindsym $mod+Shift+r	mode "Resize Window"
+  bindsym $mod+r	mode "Resize Gap"
+}
+bindsym $mod+Shift+e	mode "Move Window"
+
+mode "Resize Window" {
+  bindsym h	resize shrink width  1  px
+  bindsym j	resize grow   height 1  px
+  bindsym k	resize shrink height 1  px
+  bindsym l	resize grow   width  1  px
+
+  bindsym Shift+h	resize shrink width  10 px
+  bindsym Shift+j	resize grow   height 10 px
+  bindsym Shift+k	resize shrink height 10 px
+  bindsym Shift+l	resize grow   width  10 px
+
+  bindsym Control+h	resize shrink width  50 px
+  bindsym Control+j	resize grow   height 50 px
+  bindsym Control+k	resize shrink height 50 px
+  bindsym Control+l	resize grow   width  50 px
+
+  bindsym r	move position center
+  bindsym Shift+r	move absolute position center
+
+  bindsym q	mode "default"
+  bindsym Return	mode "default"
+  bindsym Escape	mode "default"
+
+  bindsym $mod+Shift+e	mode "Move Window"
+  bindsym $mod+r	mode "Resize Gap"
+}
+bindsym $mod+Shift+r	mode "Resize Window"
+
+mode "Launcher" {
+  bindsym 1	exec $browser
+  bindsym Control+1	exec $browser --private-window
+  bindsym 2	exec $terminal
+  bindsym 3	exec spotify
+  bindsym 4	exec vlc
+  bindsym 5	exec pcmanfm
+  bindsym 7	exec gimp
+
+  bindsym t	exec telegram-desktop
+  bindsym s	exec steam
+  bindsym d	exec discord
+  bindsym m	exec minecraft-launcher
+
+  bindsym q	mode "default"
+  bindsym Return	mode "default"
+  bindsym Escape	mode "default"
+}
+bindsym $mod+a	mode "Launcher"
+
+title_align	center
+popup_during_fullscreen	leave_fullscreen
+# The below commented option will lead 'move container to workspace "x"' does not work properly.
+#workspace_auto_back_and_forth	yes
+focus_on_window_activation	focus
+default_border	pixel 0
+default_floating_border	pixel 0
+
+# Removing title bar, tamporarily solve the issue since 4.19, might be deleted after
+for_window [all] border pixel 0
+
+#for_window [class=Chromium]		\
+for_window [class=Chromium		\
+            title="DevTools - *"]	\
+  floating enable		\
+  move position center
+
+for_window [class=firefox]		\
+  floating enable		\
+  move position center
+for_window [class=firefox		\
+            title="Browser Console"]	\
+  floating enable
+for_window [class=firefox		\
+            title="Library"]		\
+  floating enable
+for_window [class=firefox		\
+            title="Developer Tools - *"]	\
+  floating enable
+for_window [class=firefox		\
+            title="Page Info - *"]	\
+  floating enable
+for_window [class=firefox		\
+            title="About Mozilla Firefox"]	\
+  floating enable
+for_window [class=vlc]		\
+  floating enable		\
+  move container to workspace number $ws4
+for_window [class=vlc		\
+            title=Playlist]		\
+  floating enable
+for_window [class=qv2ray]		\
+  move container to workspace number $ws6
+for_window [class=Lxterminal		\
+            title=nagbar-cmd*]		\
+  floating enable		\
+  move position center
+for_window [class=Lxterminal		\
+            title=system-upgrade]	\
+  move container to workspace number $ws8	\
+  workspace number $ws8
+for_window [class=Lxterminal		\
+            title=temporary]		\
+  floating enable		\
+  move container to workspace number $ws8
+#for_window [class=URxvt		\
+#            title=nagbar-cmd*]		\
+#  floating enable		\
+#  move position center
+for_window [class=Gimp]		\
+  floating enable		\
+  move container to workspace number $ws7
+for_window [class=Blueman-*]		\
+  floating enable
+for_window [class=Pavucontrol]		\
+  floating enable
+for_window [class=Inkscape]		\
+  floating enable		\
+  move container to workspace number $ws7
+for_window [class=Gpick]		\
+  floating enable
+for_window [class=Lxappearance]		\
+  floating enable
+for_window [class=qt5ct]		\
+  floating enable
+for_window [instance=guvcview]		\
+  floating enable
+for_window [class=Gpicview]		\
+  floating enable
+for_window [class=Vimiv]		\
+  floating enable
+for_window [class=Pcmanfm]		\
+  floating enable		\
+  move container to workspace number $ws5
+for_window [class=pcmanfm-qt]		\
+  floating enable
+for_window [class=Nemo]		\
+  floating enable
+for_window [class=Xarchiver]		\
+  floating enable
+for_window [class=feh]		\
+  floating enable
+for_window [class=Gvim]		\
+  floating enable
+for_window [class=Steam]		\
+  floating enable		\
+  move container to workspace number $ws9
+for_window [class=steam*]		\
+  floating enable
+for_window [class=hl_linux]		\
+  floating enable		\
+  move container to workspace number $ws9
+for_window [class=hl2_linux]		\
+  floating enable		\
+  move container to workspace number $ws9
+for_window [class=Hardinfo]		\
+  floating enable
+for_window [class=MPlayer]		\
+  floating enable		\
+#  move container to workspace number $ws4
+for_window [class=scrcpy]		\
+  floating enable
+for_window [class=Ibus-setup]		\
+  floating enable
+for_window [class=Gnome-boxes]		\
+  floating enable		\
+  move container to workspace number $ws8
+for_window [class=Gcolor3]		\
+  floating enable
+for_window [class=Fcitx-config-gtk3]	\
+  floating enable
+for_window [class=jetbrains-studio]	\
+  floating enable		\
+  move container to workspace number $ws10
+for_window [class=java-lang-Thread]	\
+  floating enable		\
+  move container to workspace number $ws10
+for_window [class=Nm-connection-editor]	\
+  floating enable
+for_window [class=Minecraft*]		\
+  floating enable		\
+  move container to workspace number $ws9
+for_window [class=minecraft*]		\
+  floating enable		\
+  move container to workspace number $ws9
+for_window [class=Arandr]		\
+  floating enable
+for_window [class=SimpleScreenRecorder]	\
+  floating enable
+for_window [class=Anki]		\
+  floating enable
+for_window [title="Android Emulator*"]	\
+  floating enable
+for_window [title=Emulator]		\
+  floating enable
+for_window [title=Spotify]		\
+  floating enable
+for_window [class="Sound of Her Love"]	\
+  floating enable
+for_window [class=Wine]		\
+  floating enable
+for_window [class=TelegramDesktop]	\
+  floating enable
+for_window [class=discord]		\
+  floating enable
+for_window [class="V2Ray-Desktop"]	\
+  floating enable
+for_window [class="Clashy"]		\
+  floating enable
+for_window [class="Org.gnome.Nautilus"]	\
+  floating enable
+#for_window [class="Chromium"		\
+#            title="LINE"]		\
+#  floating enable
+for_window [class="qv2ray"		\
+            title="Qv2ray"]		\
+  floating enable
+
+gaps inner 10
+
+client.background       #272A34
+#                       Border  Backgrd Text    Indictr Border_Child
+client.focused          #676970 #676970 #FFFFFF #BEBFC2 #676970
+client.focused_inactive #23252E #23252E #A8A9AD #676970 #23252E
+client.unfocused        #23252E #23252E #676970 #23252E #23252E
+client.urgent           #D86B68 #D86B68 #FFFFFF #BEBFC2 #676970
+client.placeholder      #23252E #23252E #676970 #23252E #23252E
+
+bar {
+  status_command i3status
+
+  position top
+
+  font pango:Roboto Nerd Font Bold 10
+
+  separator_symbol " "
+
+  strip_workspace_numbers yes
+
+  colors {
+    set $red1 "#D86B68"
+    set $red2 "#FEE1D3"
+    set $red3 "#9F3835"
+
+    set $blu1 "#9397CB"
+    set $blu2 "#DDE2E9"
+    set $blu3 "#3A3D46"
+
+    background          $blu3
+    statusline          $blu2
+    separator           $blu2
+    #                   Border  Backgrd Text
+    focused_workspace   $blu3   $blu2   $blu3
+    active_workspace    $blu3   $blu1   $blu3
+    inactive_workspace  $blu3   $blu3   $blu1
+    urgent_workspace    $blu3   $blu1   $blu2
+    binding_mode        $blu3   $blu2   $blu3
+  }
+}

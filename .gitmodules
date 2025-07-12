@@ -1,0 +1,3 @@
+[submodule ".config/fcitx"]
+	path = .config/fcitx
+	url = git@github.com:itzXian/config-fcitx.git

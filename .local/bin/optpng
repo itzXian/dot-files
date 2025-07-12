@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+#local path
+if [ -n "$1" ]; then
+    path="$(pwd)"
+else
+    path="$1"
+fi
+
+IFS=$'\n'
+for i in $(find $1 -name '*.jpg' -o -name '*.png'); do
+    file_size="$(ls -l "$i" | awk '{print $5}')"
+    echo $i $file_size
+    if [ "$file_size" -gt 5000000 ]; then
+        if [[ "$i" =~ \.jpg ]]; then
+            jpegoptim -m 80 "$i"
+        elif [[ "$i" =~ \.png ]]; then
+            optipng -o1 -fix "$i";
+        fi
+    fi
+done
