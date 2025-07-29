@@ -98,6 +98,9 @@ esac
   export ANDROID_HOME=~/Android/Sdk                           &&\
  # rofi
 export PATH="$PATH:~/.config/rofi/bin"
+ # local bin
+[[ -d              ~/.local/bin                           ]] &&\
+export PATH="$PATH:~/.local/bin"
 
 # Alias
 [[ -n "$(command -v xset)"             ]] &&\
