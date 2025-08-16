@@ -190,6 +190,7 @@ colo default
   hi CursorLine	term=bold	cterm=NONE
   hi CursorLineNr	term=bold	cterm=bold
 
+set directory="~/.vim/swapfiles//,~/tmp,/var/tmp,/tmp"
 set hls
   set is
   no  <C-k>c :let @/=""<CR>
