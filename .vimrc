@@ -242,6 +242,8 @@ set ttm=-1
  "tno  <C-c> <Esc> " Terminal-Job
 "Disable mouse
 "set mouse=""
+"Enable mouse
+set mouse="a"
 
   no   <Up>    <NOP>
   ino  <Up>    <NOP>
