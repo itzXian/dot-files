@@ -243,7 +243,7 @@ set ttm=-1
 "Disable mouse
 "set mouse=""
 "Enable mouse
-set mouse="a"
+set mouse=a
 
   no   <Up>    <NOP>
   ino  <Up>    <NOP>
