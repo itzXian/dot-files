@@ -357,7 +357,7 @@ set hls
   ino <C-k>c <Esc>:let @/=""<CR>
 set fdm=indent
 set fdl=28
-set nowrap
+"set nowrap
 set nu
   au! InsertEnter * set rnu
   au! InsertLeave * set nornu
