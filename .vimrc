@@ -376,6 +376,7 @@ set splitright
   no gn :bn<CR>
   no gw :bw<CR>
   no gq :q<CR>
+  no gb :tabnew 
 set so=0
 
 set backspace=indent,eol,start
