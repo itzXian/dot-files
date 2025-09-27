@@ -302,85 +302,6 @@ if [ -n "$(command -v ffmpeg)" ]; then
     ffmpeg -hide_banner "${cmd[@]}"
   }
 fi
- # pacman
-if [ -n "$(command -v pacman)" ]; then
-   alias pacman='pacman --color=auto'
-   alias sP='sudo pacman --color=auto'
-   alias Ps='sudo pacman -S'
-   alias Sc='sudo pacman -Sc'
-   alias Sg='pacman -Sg'
-   alias Sgq='pacman -Sgq'
-   alias Si='pacman -Si'
-   alias Sl='pacman -Sl'
-   alias Slq='pacman -Slq'
-   alias Ss='pacman -Ss'
-   alias Ssq='pacman -Ssq'
-   alias Sy='sudo pacman -Sy'
-   alias Syu='sudo pacman -Syu'
-   alias Pf='pacman -F'
-   alias Fq='pacman -Fq'
-   alias Fl='pacman -Fl'
-   alias Fx='pacman -Fx'
-   alias Pq='pacman -Q'
-   alias Qq='pacman -Qq'
-   alias Qc='pacman -Qc'
-   alias Qg='pacman -Qg'
-   alias Qgq='pacman -Qgq'
-   alias Qs='pacman -Qs'
-   alias Qsq='pacman -Qsq'
-   alias Qi='pacman -Qi'
-   alias Ql='pacman -Ql'
-   alias Qlq='pacman -Qlq'
-   alias Qo='pacman -Qo'
-   alias Qoq='pacman -Qoq'
-   alias Qtdq='pacman -Qtdq'
-   alias Qte='pacman -Qte'
-   alias Qteq='pacman -Qteq'
-   alias Pr='sudo pacman -R'
-   alias Rc='sudo pacman -Rc'
-   alias Rnus='sudo pacman -Rnus'
-   alias cP='pacman -Q | wc -l'
-  oQ () {
-    list_binaries () {
-      echo -e "\e[1m"
-      echo $1
-      echo -e "\e[1;32m"
-      pacman -Qlq $1                       \
-      | grep /usr/bin/.                    \
-      | awk '{gsub("/", " "); print $NF}'  \
-      | column
-      echo -e "\e[0m"
-    }
-
-    for i in $@; do
-      if [ -n "$(command -v $i)" ]; then
-        list_binaries $(pacman -Qoq $i)
-      else
-        list_binaries $i
-      fi
-    done
-
-  unset list_binaries
-  }
-  if [ -n "$(command -v pactree)" ]; then
-     Pd  () {
-       if [ -n "$2" ]; then
-          local _depth="$2"
-       else
-          local _depth=1
-       fi
-       pactree -d "$_depth" "$1"
-     }
-     Pdr () {
-       if [ -n "$2" ]; then
-          local _depth="$2"
-       else
-          local _depth=1
-       fi
-       pactree -r -d "$_depth" "$1"
-     }
-  fi
-fi
  # git
 if [ -n "$(command -v git)" ]; then
    alias Ga='git add'
@@ -491,7 +412,14 @@ if [ -n "$(command -v vim)" ]; then
     fi
   }
 
-   alias V=vim
+  V () {
+    if [ $@ ]; then
+      vim "$@"
+    else
+      vim .
+    fi
+  }
+
    alias Vd='vimdiff'
    alias Vs='vim -S'
    alias Vb='Vsf ~/.bashrc'
@@ -611,180 +539,7 @@ if [[ $BASH = *termux* ]]; then
      . $PREFIX/share/bash-completion/bash_completion
 fi
 
-# APT(Advanced Package Tool)
-!  [ -n "$(command -v apt)" ] && return
-if [ -n "$(command -v apt)" ]; then
-   alias Ps='apt install'
-   alias Sc='apt autoclean'
-   alias Sl='apt -qq list'
-   alias Sy='apt update'
-   alias Syu='apt update && apt upgrade'
-   alias Pq='apt -qq list --installed 2>/dev/null'
-   alias Pr='apt remove'
-   alias Rnus='apt autoremove'
-   alias cP='apt -qq list --installed 2>/dev/null | wc -l'
-   alias Qlq='dpkg -L'
-   alias Pd='apt-cache depends'
-   alias Pdr='apt-cache rdepends'
-
-  Sg  () {
-    apt -qq list                                \
-    2>/dev/null                                 \
-    | grep /$@                                  \
-    | awk '{gsub("/", " "); print $2" "$1}'
-  }
-
-  Sgq () {
-    apt -qq list                                \
-    2>/dev/null                                 \
-    | grep /$@                                  \
-    | cut -f 1 -d /
-  }
-
-  Si  () {
-    local esc=$(echo -e '\e')
-    for i in $@; do
-        apt -qq show $i                         \
-        2>/dev/null                             \
-        | sed "s/^\(.\)/${esc}[32m\1/g"         \
-        | sed "s/: /${esc}[0m: /g"
-    done
-  }
-
-  Slq () {
-    apt -qq list $@                             \
-    2>/dev/null                                 \
-    | cut -f 1 -d /
-  }
-
-  Ss  () {
-    if [ $# -eq 0 ]; then
-      apt -qq search .                          \
-      2>/dev/null
-    else
-      apt -qq search $@                         \
-      2>/dev/null
-    fi
-  }
-
-  Ssq () {
-    apt -qq search $@                           \
-    2>/dev/null                                 \
-    | grep -v ^\                                \
-    | cut -f 1 -d /
-  }
-
-  Qq  () {
-    apt -qq list $@                             \
-     --installed                                \
-    2>/dev/null                                 \
-    | cut -f 1 -d /
-  }
-
-  Qg  () {
-    apt -qq list                                \
-     --installed                                \
-    2>/dev/null                                 \
-    | grep /$@                                  \
-    | awk '{gsub("/", " "); print $2" "$1}'
-  }
-
-  Qgq () {
-    apt -qq list                                \
-     --installed                                \
-    2>/dev/null                                 \
-    | grep /$@                                  \
-    | cut -f 1 -d /
-  }
-
-  Qi  () {
-    local esc=$(echo -e '\e')
-    for i in $@; do
-      apt -qq list $i                           \
-       --installed                              \
-      2>/dev/null                               \
-      | grep installed                          \
-       >/dev/null
-      [ $? -eq 1 ] && return
-      echo -e                                   \
-        $(apt -qq show $i                       \
-        2>/dev/null                             \
-        | sed "s/^\(.\)/${esc}[32m\1/g"         \
-        | sed "s/: /${esc}[0m: /g"              \
-        | sed 's/$/\\n/g'                       \
-        )                                       \
-        ${esc}[32mRequired-By${esc}[0m:         \
-        $(apt-cache rdepends $i                 \
-         --installed                            \
-        | grep '^  '                            \
-        )                                       \
-      | sed 's/^ //g'
-    done
-  }
-
-  Ql  () {
-    local esc=$(echo -e '\e')
-    for i in $@; do
-      dpkg -L $i                                \
-      | sed "s/^/${esc}[32m$i${esc}[0m /g"
-    done
-  }
-
-  Qs  () {
-      apt -qq search $@                         \
-      2>/dev/null                               \
-      | grep -A 2 installed                     \
-      | sed 's/\[installed.*\]//g'              \
-      | sed '/--/d'                             \
-      | sed 's/^\([.a-z0-9-]\+\)/[32m\1[0m/g'
-  }
-
-  Qsq () {
-    apt -qq list                                \
-     --installed                                \
-    2>/dev/null                                 \
-    | grep $@                                   \
-    | cut -f 1 -d /
-  }
-
-  Qo  () {
-    local esc=$(echo -e '\e')
-    dpkg -S $(which $@)                         \
-    | sed "s/^\(.*\):/${esc}[32m\1${esc}[0m/g"
-  }
-
-  Qoq () {
-    dpkg -S $(which $@)                         \
-    | cut -f 1 -d :
-  }
-
-  oQ  () {
-    list_binaries () {
-      echo -e "\e[1m"
-      echo $1
-      echo -e "\e[1;32m"
-      dpkg -L $1                                \
-      | grep /usr/bin/.                         \
-      | sort                                    \
-      | awk '{gsub("/", " "); print $NF}'       \
-      | column
-      echo -e "\e[0m"
-    }
-
-    for i in $@; do
-      if [ -n "$(command -v $i)" ]; then
-        list_binaries $(dpkg -S $(which $i)     \
-                      | cut -f 1 -d :           \
-        )
-      else
-        list_binaries $i
-      fi
-    done
-
-    unset list_binaries
-  }
-
-fi
-
-
-
+[[ -d ~/.bash ]] &&\
+for i in ~/.bash/*; do
+  source "$i";
+done
