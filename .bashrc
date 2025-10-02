@@ -413,8 +413,8 @@ if [ -n "$(command -v vim)" ]; then
   }
 
   V () {
-    if [ $@ ]; then
-      vim "$@"
+    if [ "$*" ]; then
+      vim "$*"
     else
       vim .
     fi
