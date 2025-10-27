@@ -237,43 +237,21 @@ default_border	pixel 0
 default_floating_border	pixel 0
 
 # Removing title bar, tamporarily solve the issue since 4.19, might be deleted after
-for_window [all] border pixel 0
+for_window [all] border pixel 0 floating enable
 
 #for_window [class=Chromium]		\
 for_window [class=Chromium		\
             title="DevTools - *"]	\
-  floating enable		\
   move position center
 
 for_window [class=firefox]		\
-  floating enable		\
   move position center
-for_window [class=firefox		\
-            title="Browser Console"]	\
-  floating enable
-for_window [class=firefox		\
-            title="Library"]		\
-  floating enable
-for_window [class=firefox		\
-            title="Developer Tools - *"]	\
-  floating enable
-for_window [class=firefox		\
-            title="Page Info - *"]	\
-  floating enable
-for_window [class=firefox		\
-            title="About Mozilla Firefox"]	\
-  floating enable
 for_window [class=vlc]		\
-  floating enable		\
   move container to workspace number $ws4
-for_window [class=vlc		\
-            title=Playlist]		\
-  floating enable
 for_window [class=qv2ray]		\
   move container to workspace number $ws6
 for_window [class=Lxterminal		\
             title=nagbar-cmd*]		\
-  floating enable		\
   move position center
 for_window [class=Lxterminal		\
             title=system-upgrade]	\
@@ -281,120 +259,34 @@ for_window [class=Lxterminal		\
   workspace number $ws8
 for_window [class=Lxterminal		\
             title=temporary]		\
-  floating enable		\
   move container to workspace number $ws8
 #for_window [class=URxvt		\
 #            title=nagbar-cmd*]		\
-#  floating enable		\
 #  move position center
 for_window [class=Gimp]		\
-  floating enable		\
   move container to workspace number $ws7
-for_window [class=Blueman-*]		\
-  floating enable
-for_window [class=Pavucontrol]		\
-  floating enable
 for_window [class=Inkscape]		\
-  floating enable		\
   move container to workspace number $ws7
-for_window [class=Gpick]		\
-  floating enable
-for_window [class=Lxappearance]		\
-  floating enable
-for_window [class=qt5ct]		\
-  floating enable
-for_window [instance=guvcview]		\
-  floating enable
-for_window [class=Gpicview]		\
-  floating enable
-for_window [class=Vimiv]		\
-  floating enable
 for_window [class=Pcmanfm]		\
-  floating enable		\
   move container to workspace number $ws5
-for_window [class=pcmanfm-qt]		\
-  floating enable
-for_window [class=Nemo]		\
-  floating enable
-for_window [class=Xarchiver]		\
-  floating enable
-for_window [class=feh]		\
-  floating enable
-for_window [class=Gvim]		\
-  floating enable
 for_window [class=Steam]		\
-  floating enable		\
   move container to workspace number $ws9
-for_window [class=steam*]		\
-  floating enable
 for_window [class=hl_linux]		\
-  floating enable		\
   move container to workspace number $ws9
 for_window [class=hl2_linux]		\
-  floating enable		\
   move container to workspace number $ws9
-for_window [class=Hardinfo]		\
-  floating enable
 for_window [class=MPlayer]		\
-  floating enable		\
 #  move container to workspace number $ws4
-for_window [class=scrcpy]		\
-  floating enable
-for_window [class=Ibus-setup]		\
-  floating enable
 for_window [class=Gnome-boxes]		\
-  floating enable		\
   move container to workspace number $ws8
-for_window [class=Gcolor3]		\
-  floating enable
-for_window [class=Fcitx-config-gtk3]	\
-  floating enable
 for_window [class=jetbrains-studio]	\
-  floating enable		\
   move container to workspace number $ws10
 for_window [class=java-lang-Thread]	\
-  floating enable		\
   move container to workspace number $ws10
-for_window [class=Nm-connection-editor]	\
-  floating enable
 for_window [class=Minecraft*]		\
-  floating enable		\
   move container to workspace number $ws9
 for_window [class=minecraft*]		\
-  floating enable		\
   move container to workspace number $ws9
-for_window [class=Arandr]		\
-  floating enable
-for_window [class=SimpleScreenRecorder]	\
-  floating enable
-for_window [class=Anki]		\
-  floating enable
-for_window [title="Android Emulator*"]	\
-  floating enable
-for_window [title=Emulator]		\
-  floating enable
-for_window [title=Spotify]		\
-  floating enable
-for_window [class="Sound of Her Love"]	\
-  floating enable
-for_window [class=Wine]		\
-  floating enable
-for_window [class=TelegramDesktop]	\
-  floating enable
-for_window [class=discord]		\
-  floating enable
-for_window [class="V2Ray-Desktop"]	\
-  floating enable
-for_window [class="Clashy"]		\
-  floating enable
-for_window [class="Org.gnome.Nautilus"]	\
-  floating enable
-#for_window [class="Chromium"		\
-#            title="LINE"]		\
-#  floating enable
-for_window [class="qv2ray"		\
-            title="Qv2ray"]		\
-  floating enable
 
 gaps inner 10
 
