@@ -244,6 +244,8 @@ for_window [class=Chromium]		\
   move container to workspace number $ws1
 for_window [class=firefox]		\
   move container to workspace number $ws1
+for_window [class=Google-chrome]	\
+  move container to workspace number $ws1
 
 # Terminals
 for_window [class="(Lxterminal|URxvt)"]	\
