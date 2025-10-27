@@ -239,20 +239,42 @@ default_floating_border	pixel 0
 # Removing title bar, tamporarily solve the issue since 4.19, might be deleted after
 for_window [all] border pixel 0 floating enable
 
-#for_window [class=Chromium]		\
-for_window [class=Chromium		\
-            title="DevTools - *"]	\
-  move position center
-
+# Browsers
+for_window [class=Chromium]		\
+  move container to workspace number $ws1
 for_window [class=firefox]		\
-  move position center
+  move container to workspace number $ws1
+
+# Terminals
+for_window [class="(Lxterminal|URxvt)"]	\
+  floating disable		\
+  move container to workspace number $ws2
+
+# Media
+for_window [class=MPlayer]		\
+  move container to workspace number $ws4
 for_window [class=vlc]		\
   move container to workspace number $ws4
+
+# Files
+for_window [class=Pcmanfm]		\
+  move container to workspace number $ws5
+
+# Utils
+for_window [class=Com.follow.clash]	\
+  move container to workspace number $ws6
 for_window [class=qv2ray]		\
   move container to workspace number $ws6
-for_window [class=Lxterminal		\
-            title=nagbar-cmd*]		\
-  move position center
+
+# Tools
+for_window [class=Gimp]		\
+  move container to workspace number $ws7
+for_window [class=Inkscape]		\
+  move container to workspace number $ws7
+for_window [class=Gnome-boxes]		\
+  move container to workspace number $ws7
+
+# Pop-ups
 for_window [class=Lxterminal		\
             title=system-upgrade]	\
   move container to workspace number $ws8	\
@@ -260,33 +282,28 @@ for_window [class=Lxterminal		\
 for_window [class=Lxterminal		\
             title=temporary]		\
   move container to workspace number $ws8
-#for_window [class=URxvt		\
-#            title=nagbar-cmd*]		\
-#  move position center
-for_window [class=Gimp]		\
-  move container to workspace number $ws7
-for_window [class=Inkscape]		\
-  move container to workspace number $ws7
-for_window [class=Pcmanfm]		\
-  move container to workspace number $ws5
+for_window [class=".*"		\
+            title=nagbar-cmd*]		\
+  floating enable		\
+  move position center
+
+# Games
 for_window [class=Steam]		\
   move container to workspace number $ws9
 for_window [class=hl_linux]		\
   move container to workspace number $ws9
 for_window [class=hl2_linux]		\
   move container to workspace number $ws9
-for_window [class=MPlayer]		\
-#  move container to workspace number $ws4
-for_window [class=Gnome-boxes]		\
-  move container to workspace number $ws8
-for_window [class=jetbrains-studio]	\
-  move container to workspace number $ws10
-for_window [class=java-lang-Thread]	\
-  move container to workspace number $ws10
 for_window [class=Minecraft*]		\
   move container to workspace number $ws9
 for_window [class=minecraft*]		\
   move container to workspace number $ws9
+
+# Dev
+for_window [class=jetbrains-studio]	\
+  move container to workspace number $ws10
+for_window [class=java-lang-Thread]	\
+  move container to workspace number $ws10
 
 gaps inner 10
 
