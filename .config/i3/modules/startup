@@ -10,3 +10,5 @@ sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
 $run unclutter
 $run xss-lock --transfer-sleep-lock --ignore-sleep -- $lock
 #$run barrier
+$run localsend
+$run flclash
