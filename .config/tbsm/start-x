@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+# For Rustdesk
+export XDG_SESSION_TYPE=x11
+
+startx $@
