@@ -285,14 +285,25 @@ no  <C-k>N      :vnew
 ino <C-k>N <Esc>:vnew 
 tno <C-k>N <C-w>:vnew 
 
-no  <C-k>e      :Lex             <CR>
-ino <C-k>e <Esc>:Lex             <CR>
-tno <C-k>e <C-w>:Lex             <CR>
+no  <C-k>e      :call Netrw()    <CR>
+ino <C-k>e <Esc>:call Netrw()    <CR>
+tno <C-k>e <C-w>:call Netrw()    <CR>
 
   let g:netrw_banner=0
   let g:netrw_sizestyle="H"
   let g:netrw_liststyle=3 "<C-l> issue
-  let g:netrw_winsize=10
+  let g:netrw_winsize=0
+  let g:netrw_bufsettings="wrap"
+
+function! Netrw()
+  if bufwinnr("NetrwTreeListing") > 0
+    :Lex
+  else
+    :Lex
+    :40 wincmd |
+  endif
+endfunction
+
 
 set fencs=ucs-bom,utf-8
 if ! has('win32')
