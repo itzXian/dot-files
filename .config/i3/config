@@ -267,6 +267,8 @@ for_window [class=Com.follow.clash]	\
   move container to workspace number $ws6
 for_window [class=qv2ray]		\
   move container to workspace number $ws6
+for_window [class=Localsend]		\
+  move container to workspace number $ws6
 
 # Tools
 for_window [class=Gimp]		\
