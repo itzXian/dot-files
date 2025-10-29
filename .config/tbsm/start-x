@@ -3,4 +3,4 @@
 # For Rustdesk
 export XDG_SESSION_TYPE=x11
 
-startx $@
+startx $@ -- ":1" -nolisten tcp
