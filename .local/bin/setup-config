@@ -1,0 +1,7 @@
+for i in .*; do
+  if ! [ $i = '.' ] \
+  && ! [ $i = '..' ] \
+  && ! [ $i = '.git' ]; then
+    mv $i ~/
+  fi
+done
