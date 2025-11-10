@@ -123,11 +123,23 @@ alias MP='echo $PATH                        \
           | sed "s/:/\n/g"                  \
       '
 
-alias IP='echo $(whoami)@$(ip addr          \
-                        | grep -Eo 192.*    \
-                        | cut -f 1 -d /     \
-               )                            \
-      '
+IP () {
+  if [ -n "$(command -v ip)" ]; then
+    local ip_addr=$(ip addr                 \
+                  | grep -Eo 192.*          \
+                  | cut -f 1 -d /           \
+    );
+  elif [ -n "$(command -v ifconfig)" ]; then
+    local ip_addr=$(ifconfig                \
+                  | grep -Eo 192[.0-9]*     \
+                  | head -1                 \
+    );
+  fi
+  echo "$(whoami)@$ip_addr";
+  if test $(echo "$ip_addr" | grep ^172); then
+    echo "$(whoami)@$(curl ifconfig.io)";
+  fi
+}
 
 alias ..='../'
 alias ...='../../'
