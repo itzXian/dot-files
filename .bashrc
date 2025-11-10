@@ -136,7 +136,7 @@ IP () {
     );
   fi
   echo "$(whoami)@$ip_addr";
-  if test $(echo "$ip_addr" | grep ^172); then
+  if test "$(echo $ip_addr | grep ^172)"; then
     echo "$(whoami)@$(curl ifconfig.io)";
   fi
 }
