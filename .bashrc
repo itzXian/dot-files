@@ -126,18 +126,18 @@ alias MP='echo $PATH                        \
 IP () {
   if [ -n "$(command -v ip)" ]; then
     local ip_addr=$(ip addr                 \
-                  | grep -Eo 1[79]2.*          \
-                  | cut -f 1 -d /           \
+                  | grep -Eo 1[79]2[.0-9]*  \
+                  | head -1                 \
     );
   elif [ -n "$(command -v ifconfig)" ]; then
     local ip_addr=$(ifconfig                \
-                  | grep -Eo 1[79]2[.0-9]*     \
+                  | grep -Eo 1[79]2[.0-9]*  \
                   | head -1                 \
     );
   fi
   echo "$(whoami)@$ip_addr";
   if test "$(echo $ip_addr | grep ^172)"; then
-    echo "$(whoami)@$(curl ifconfig.io)";
+    echo "$(whoami)@$(curl -s ifconfig.io)";
   fi
 }
 
