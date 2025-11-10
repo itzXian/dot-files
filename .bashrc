@@ -126,12 +126,12 @@ alias MP='echo $PATH                        \
 IP () {
   if [ -n "$(command -v ip)" ]; then
     local ip_addr=$(ip addr                 \
-                  | grep -Eo 192.*          \
+                  | grep -Eo 1[79]2.*          \
                   | cut -f 1 -d /           \
     );
   elif [ -n "$(command -v ifconfig)" ]; then
     local ip_addr=$(ifconfig                \
-                  | grep -Eo 192[.0-9]*     \
+                  | grep -Eo 1[79]2[.0-9]*     \
                   | head -1                 \
     );
   fi
