@@ -1,0 +1,18 @@
+#!/usr/bin/sh
+ # android-tools ADB(Android Debug Bridge)
+!  [ -n "$(command -v adb)" ] && return
+if [ -n "$(command -v adb)" ]; then
+   alias Al='adb shell cmd package list packages'
+   alias Alu='adb shell cmd package list packages -u'
+   alias As='adb shell cmd package list packages | cut -f 2 -d : | grep'
+   alias Asu='adb shell cmd package list packages -u | cut -f 2 -d : | grep'
+   alias Ad='adb shell cmd package disable-user'
+   alias Ae='adb shell cmd package enable'
+   alias Ap='adb shell pm suspend'
+   alias Aup='adb shell pm unsuspend'
+   alias Au='adb shell cmd package uninstall --user 0'
+   alias Ai='adb shell cmd package install-existing'
+   alias Ar='adb shell reboot'
+   alias Arr='adb shell reboot recovery'
+   alias Arb='adb shell reboot bootloader'
+fi

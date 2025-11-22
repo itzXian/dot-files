@@ -1,0 +1,27 @@
+#!/usr/bin/sh
+# for TERMUX
+   [[ $BASH = *termux* ]] || return
+if [[ $BASH = *termux* ]]; then
+  ChFont2 () {
+    if [ -e "$1" ]; then
+      cp "$1"             ~/.termux/
+      cp "$1"             ~/.termux/font.ttf
+    else
+      cp ~/.termux/*${1}* ~/.termux/font.ttf
+    fi
+    termux-reload-settings
+  }
+
+  ChColo2 () {
+    if [ -e "$1" ]; then
+      cp "$1"             ~/.termux/
+      cp "$1"             ~/.termux/colors.properties
+    else
+      cp ~/.termux/*${1}* ~/.termux/colors.properties
+    fi
+    termux-reload-settings
+  }
+
+  [ -e $PREFIX/share/bash-completion/bash_completion ] &&\
+     . $PREFIX/share/bash-completion/bash_completion
+fi

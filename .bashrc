@@ -68,11 +68,13 @@ alias dfs='git --git-dir=$(find $HOME -maxdepth 2 -name dot-files 2>/dev/null)/.
 
 # PATH
  # pnpm
-export PNPM_HOME="/home/ei/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+if [ -n "$(command -v pnpm)" ]; then
+  export PNPM_HOME="/home/ei/.local/share/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi
  # yarn
 [[ -n "$(command -v yarn)"                                    &&\
   $(uname -n) != localhost                                    &&\
@@ -122,6 +124,29 @@ export PATH="$PATH:~/.local/bin"
 alias MP='echo $PATH                        \
           | sed "s/:/\n/g"                  \
       '
+
+Proxy() {
+  local port
+
+  if [[ "$1" == "off" ]]; then
+    unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY
+    echo "Proxy unset."
+    return 0
+  fi
+
+  if [[ "$1" =~ ^[0-9]+$ ]] && [[ "$1" -gt 0 ]]; then
+    port="$1"
+  else
+    port=7890
+  fi
+
+  export http_proxy="http://127.0.0.1:$port"
+  export https_proxy="$http_proxy"
+  export HTTP_PROXY="$http_proxy"
+  export HTTPS_PROXY="$https_proxy"
+
+  echo "Proxy set to 127.0.0.1:$port"
+}
 
 IP () {
   if [ -n "$(command -v ip)" ]; then
@@ -264,22 +289,6 @@ Read () {
   fi
 }
 
- # android-tools ADB(Android Debug Bridge)
-if [ -n "$(command -v adb)" ]; then
-   alias Al='adb shell cmd package list packages'
-   alias Alu='adb shell cmd package list packages -u'
-   alias As='adb shell cmd package list packages | cut -f 2 -d : | grep'
-   alias Asu='adb shell cmd package list packages -u | cut -f 2 -d : | grep'
-   alias Ad='adb shell cmd package disable-user'
-   alias Ae='adb shell cmd package enable'
-   alias Ap='adb shell pm suspend'
-   alias Aup='adb shell pm unsuspend'
-   alias Au='adb shell cmd package uninstall --user 0'
-   alias Ai='adb shell cmd package install-existing'
-   alias Ar='adb shell reboot'
-   alias Arr='adb shell reboot recovery'
-   alias Arb='adb shell reboot bootloader'
-fi
  # aria2
 if [ -n "$(command -v aria2c)" ]; then
    alias Dld='aria2c -d ~/Download'
@@ -314,105 +323,6 @@ if [ -n "$(command -v ffmpeg)" ]; then
       cmd+=("${@: -1}")
     ffmpeg -hide_banner "${cmd[@]}"
   }
-fi
- # git
-if [ -n "$(command -v git)" ]; then
-   alias Ga='git add'
-   alias Gm='git commit -m'
-   alias Gp='git push'
-   alias Gpl='git pull'
-   alias Gcl='git clone'
-   alias Gc='git checkout'
-   alias Gb='git branch'
-   alias Gs='git status'
-   alias Gr='git reset'
-   alias Gls='git ls-files'
-   alias Grm='git rm'
-
-  Gl () {
-    local iro+='%C(yellow)'
-    local iro+='%h'
-
-    local iro+='	'
-
-    local iro+='%Creset'
-    local iro+='%C(bold)'
-    local iro+='%s'
-
-    local iro+=' '
-
-    local iro+='%Creset'
-    local iro+='%Cgreen'
-    local iro+='%cr'
-
-    local iro+=' '
-
-    local iro+='%Creset'
-    local iro+='%C(yellow)'
-    local iro+='%D'
-
-    local iro+=' '
-
-    local iro+='%an'
-
-    git log                   \
-      --graph                 \
-      --pretty=format:"$iro"  \
-      --abbrev-commit         \
-      $@
-  }
-
-  Gd  () {
-    if [ -n "$(command -v diff-so-fancy)" ]; then
-      git diff $@ | diff-so-fancy
-    else
-      git diff $@
-    fi
-  }
-
-  GA  () {
-    if [ $# -ge 1 ]; then
-      git add $@
-    else
-      git add .
-    fi
-    git commit -m "Manually Save at $(date)"
-  }
-
-  GAM () { git add ${@:1:$#-1} && git commit -m "${@: -1}"; }
-  GMA () { git add ${@:2:$#} && git commit -m "$1"; }
-  GR  () { git reset --soft HEAD^; }
-  GRM () { git reset --soft HEAD^ && git commit -m "$1"; }
-fi
- # pip
-if [ -n "$(command -v pip)" ]; then
-   alias Pi='pip install --user'
-   alias Pu='pip uninstall'
-   alias Pc='pip freeze | wc -l'
-
-  Pug () {
-    local upgrade='pip install --user --upgrade'
-    if [ -n "$(command -v pipdeptree)" ]; then
-      $upgrade $(pipdeptree | grep -Eo '^[A-Za-z0-9-]+')
-    else
-      $upgrade $(pip freeze | grep -Eo '^[A-Za-z0-9-]+')
-      pip check > /dev/null
-      if [ $? -eq 1 ]; then
-        $upgrade $(pip check | awk '{print $1}')
-      fi
-    fi
-  }
-
-  # pip completion --bash
-  _pip_completion() {
-    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}"      \
-                   COMP_CWORD=$COMP_CWORD             \
-                   PIP_AUTO_COMPLETE=1 $1 2>/dev/null \
-                )
-    )
-  }
-  complete -o default -F _pip_completion pip
-
 fi
  # vim
 if [ -n "$(command -v vim)" ]; then
@@ -481,76 +391,6 @@ fi
 [ -e /usr/share/bash-completion/bash_completion ] &&\
    . /usr/share/bash-completion/bash_completion
 
-# flutter bash-completion
-if type complete &>/dev/null; then
-  __flutter_completion() {
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           flutter completion -- "${COMP_WORDS[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -F __flutter_completion flutter
-elif type compdef &>/dev/null; then
-  __flutter_completion() {
-    si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 flutter completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef __flutter_completion flutter
-elif type compctl &>/dev/null; then
-  __flutter_completion() {
-    local cword line point words si
-    read -Ac words
-    read -cn cword
-    let cword-=1
-    read -l line
-    read -ln point
-    si="$IFS"
-    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       flutter completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  compctl -K __flutter_completion flutter
-fi
-
-# for TERMUX
-if [[ $BASH = *termux* ]]; then
-  ChFont2 () {
-    if [ -e "$1" ]; then
-      cp "$1"             ~/.termux/
-      cp "$1"             ~/.termux/font.ttf
-    else
-      cp ~/.termux/*${1}* ~/.termux/font.ttf
-    fi
-    termux-reload-settings
-  }
-
-  ChColo2 () {
-    if [ -e "$1" ]; then
-      cp "$1"             ~/.termux/
-      cp "$1"             ~/.termux/colors.properties
-    else
-      cp ~/.termux/*${1}* ~/.termux/colors.properties
-    fi
-    termux-reload-settings
-  }
-
-  [ -n "$(command -v startarch)" ] &&\
-     alias Arc='startarch ul xian'
-
-  [ -e $PREFIX/share/bash-completion/bash_completion ] &&\
-     . $PREFIX/share/bash-completion/bash_completion
-fi
 
 [[ -d ~/.bash ]] &&\
 for i in ~/.bash/*; do
