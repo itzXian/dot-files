@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-# For Rustdesk
+# for Rustdesk
 export XDG_SESSION_TYPE=x11
+
+export DESKTOP_SESSION=gnome
 
 startx $@
