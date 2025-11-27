@@ -13,6 +13,7 @@ $run mpris-proxy
 $run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 $run keynav
 $run unclutter
+$run fcitx5
 
 $run localsend
 $run flclash
