@@ -27,38 +27,9 @@ set $terminal lxterminal
 font pango:Roboto 12
 
 exec        $temporarily_run bash ~/.config/i3/modules/startup
-exec_always ~/.fehbg
 exec_always $temporarily_run bash ~/.config/i3/modules/restart
-#   exec --no-startup-id blueman-applet
-#   exec --no-startup-id gnome-keyring-daemon --start --components=secrets
-#   exec --no-startup-id keynav
-#   exec --no-startup-id mpris-proxy
-#   exec --no-startup-id sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
-#   exec --no-startup-id unclutter -grab
-#   exec --no-startup-id xss-lock --transfer-sleep-lock --ignore-sleep -- $lock
-#exec --no-startup-id \
-                    #xrandr --output eDP --primary --mode 1366x768 --pos 1920x0 --rotate normal --output HDMI-A-0 --mode 1920x1080 --pos 0x0 --rotate normal
-                    #xrandr --output eDP --off                                                  --output HDMI-A-0 --mode 1920x1080 --pos 0x0 --rotate normal
-                    #xrandr --output HDMI-A-0 --off                                             --output eDP      --mode 1366x768  --pos 0x0 --rotate normal
-#exec --no-startup-id systemctl --user start resume.service
 
-#   exec_always --no-startup-id pkill picom && picom
-#   exec_always --no-startup-id pkill v2ray && cgnoproxy qv2ray
-
-#   exec_always --no-startup-id xrdb ~/.Xresources
-#   exec_always --no-startup-id ~/.fehbg
-
-#   exec_always --no-startup-id blueman-tray
-#   exec_always --no-startup-id deadd-notification-center
-#exec_always --no-startup-id $temporarily_run xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-#   exec_always --no-startup-id $temporarily_run xinput float $(xinput list | grep AT | awk '{sub(".*id=", ""); print $1}')
-#exec_always --no-startup-id exec "xmodmap -e 'clear Lock' -e 'keycode 0x42=Tab' && exit"
-#   exec_always --no-startup-id fcitx
-#   exec_always --no-startup-id nm-applet
-#   exec_always --no-startup-id picom
-#   exec_always --no-startup-id cgnoproxy qv2ray
-#   exec_always --no-startup-id $temporarily_run xmodmap ~/.xmodmaprc
-
+# Function Keys
 bindsym XF86MonBrightnessUp	exec --no-startup-id sudo xbacklight -inc 4 && $brightness && $refresh_i3status
 bindsym XF86MonBrightnessDown	exec --no-startup-id sudo xbacklight -dec 5 && $brightness && $refresh_i3status
 bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@   +5%
@@ -76,16 +47,22 @@ bindsym XF86AudioPlay	exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext	exec --no-startup-id playerctl next
 bindsym XF86AudioPrev	exec --no-startup-id playerctl previous
 
+# Key shortcuts
+## custom utils
+bindsym $mod+Control+l	exec $lock
+bindsym $mod+Control+v	exec Viper switch && $refresh_i3status
+bindsym $mod+Shift+w	exec $temporarily_run SS u
+bindsym $mod+Control+s	exec $temporarily_run "sleep 1 && xset -display :1 dpms force off && sleep 2 && systemctl suspend"
+bindsym $mod+Shift+f	exec scrot -e 'mv "$f" ~/Pictures/' "Screenshot_%Y%m%d-%H%M%S_Workspace$(expr $(xdotool get_desktop) + 1).png"
+## i3 base actions
 bindsym $mod+q	kill
 bindsym $mod+c	restart
 bindsym $mod+Shift+c	reload
-#bindsym $mod+Control+c	exec i3-nagbar -t warning -m 'Exit i3?' -B 'Y' 'i3-msg exit'
 bindsym $mod+Control+c	exec i3-input -F 'rename workspace to "%s"' -P 'New name of current workspace: '
 bindsym $mod+d	exec echo -n $(date '+%Y-%m-%d') | xsel -b
 bindsym $mod+r	exec rofi -show drun
 bindsym $mod+t	exec echo -n $(date '+%Y-%m-%d %H:%M:%S') | xsel -b
 bindsym $mod+Return	exec i3-sensible-terminal
-bindsym $mod+Control+Return	exec urxvt
 
 bindsym $mod+f	fullscreen toggle
 bindsym $mod+s	sticky toggle
@@ -103,16 +80,6 @@ bindsym $mod+z	focus mode_toggle
 bindsym $mod+Shift+z	focus parent
 bindsym $mod+Control+z	focus child
 
-bindsym $mod+Shift+w	exec $temporarily_run SS u
-bindsym $mod+Shift+t	exec telegram-desktop
-bindsym $mod+Control+u	exec lxterminal -t system-upgrade -e "yay && sleep 5"
-bindsym $mod+Control+p	exec gcolor3
-bindsym $mod+Control+s	exec $temporarily_run "sleep 1 && xset -display :1 dpms force off && sleep 2 && systemctl suspend"
-bindsym $mod+Shift+d	execdiscord --proxy-server="socks5://127.0.0.1:1089"
-bindsym $mod+Shift+f	exec scrot -e 'mv "$f" ~/Pictures/' "Screenshot_%Y%m%d-%H%M%S_Workspace$(expr $(xdotool get_desktop) + 1).png"
-bindsym $mod+Control+l	exec $lock
-bindsym $mod+Control+v	exec Viper switch && $refresh_i3status
-bindsym $mod+Control+b	exec blueman-manager
 bindsym $mod+h	focus left
 bindsym $mod+j	focus down
 bindsym $mod+k	focus up
@@ -228,18 +195,20 @@ mode "Launcher" {
 }
 bindsym $mod+a	mode "Launcher"
 
+# i3 window behavior
+gaps inner 10
 title_align	center
 popup_during_fullscreen	leave_fullscreen
-# The below commented option will lead 'move container to workspace "x"' does not work properly.
+## The below commented option will lead 'move container to workspace "x"' does not work properly.
 #workspace_auto_back_and_forth	yes
 focus_on_window_activation	focus
 default_border	pixel 0
 default_floating_border	pixel 0
 
-# Removing title bar, tamporarily solve the issue since 4.19, might be deleted after
+## Removing title bar, tamporarily solve the issue since 4.19, might be deleted after
 for_window [all] border pixel 0 floating enable
 
-# Browsers
+## Browsers
 for_window [class=Chromium]		\
   move container to workspace number $ws1
 for_window [class=firefox]		\
@@ -247,22 +216,22 @@ for_window [class=firefox]		\
 for_window [class=Google-chrome]	\
   move container to workspace number $ws1
 
-# Terminals
+## Terminals
 for_window [class="(Lxterminal|URxvt)"]	\
   floating disable		\
   move container to workspace number $ws2
 
-# Media
+## Media
 for_window [class=MPlayer]		\
   move container to workspace number $ws4
 for_window [class=vlc]		\
   move container to workspace number $ws4
 
-# Files
+## Files
 for_window [class=Pcmanfm]		\
   move container to workspace number $ws5
 
-# Utils
+## Utils
 for_window [class=Com.follow.clash]	\
   move container to workspace number $ws6
 for_window [class=qv2ray]		\
@@ -270,7 +239,7 @@ for_window [class=qv2ray]		\
 for_window [class=Localsend]		\
   move container to workspace number $ws6
 
-# Tools
+## Tools
 for_window [class=Gimp]		\
   move container to workspace number $ws7
 for_window [class=Inkscape]		\
@@ -278,7 +247,7 @@ for_window [class=Inkscape]		\
 for_window [class=Gnome-boxes]		\
   move container to workspace number $ws7
 
-# Pop-ups
+## Pop-ups
 for_window [class=Lxterminal		\
             title=system-upgrade]	\
   move container to workspace number $ws8	\
@@ -291,7 +260,7 @@ for_window [class=".*"		\
   floating enable		\
   move position center
 
-# Games
+## Games
 for_window [class=Steam]		\
   move container to workspace number $ws9
 for_window [class=hl_linux]		\
@@ -303,46 +272,39 @@ for_window [class=Minecraft*]		\
 for_window [class=minecraft*]		\
   move container to workspace number $ws9
 
-# Dev
+## Dev
 for_window [class=jetbrains-studio]	\
   move container to workspace number $ws10
 for_window [class=java-lang-Thread]	\
   move container to workspace number $ws10
 
-gaps inner 10
-
+# i3 window focus
 client.background       #272A34
-#                       Border  Backgrd Text    Indictr Border_Child
+##                      Border  Backgrd Text    Indictr Border_Child
 client.focused          #676970 #676970 #FFFFFF #BEBFC2 #676970
 client.focused_inactive #23252E #23252E #A8A9AD #676970 #23252E
 client.unfocused        #23252E #23252E #676970 #23252E #23252E
 client.urgent           #D86B68 #D86B68 #FFFFFF #BEBFC2 #676970
 client.placeholder      #23252E #23252E #676970 #23252E #23252E
 
+# i3 bar
 bar {
   status_command i3status
-
   position top
-
   font pango:Roboto Nerd Font Bold 10
-
   separator_symbol " "
-
   strip_workspace_numbers yes
-
   colors {
     set $red1 "#D86B68"
     set $red2 "#FEE1D3"
     set $red3 "#9F3835"
-
     set $blu1 "#9397CB"
     set $blu2 "#DDE2E9"
     set $blu3 "#3A3D46"
-
     background          $blu3
     statusline          $blu2
     separator           $blu2
-    #                   Border  Backgrd Text
+    ##                  Border  Backgrd Text
     focused_workspace   $blu3   $blu2   $blu3
     active_workspace    $blu3   $blu1   $blu3
     inactive_workspace  $blu3   $blu3   $blu1

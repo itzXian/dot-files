@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+run='i3-msg exec'
+$run i3lock-fancy
+$run xset dpms force off
+$run xmodmap ~/.xmodmaprc
