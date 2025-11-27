@@ -11,8 +11,7 @@ $run sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
 $run blueman-applet
 $run mpris-proxy
 
-$run gnome-keyring-daemon --start --components=secrets
-$run dbus-update-activation-environment --all
+$run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 $run keynav
 $run unclutter
