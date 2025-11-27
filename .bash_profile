@@ -4,7 +4,6 @@
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 [ -f ~/.bashrc ] && . ~/.bashrc
-#[ -n "$DESKTOP_SESSION" ] && eval $(gnome-keyring-daemon --start) && export SSH_AUTH_SOCK
 
 # Custom keyboard remapping
 # Disable Caps Lock
