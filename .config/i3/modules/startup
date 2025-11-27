@@ -10,13 +10,15 @@ $run sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
 
 $run blueman-applet
 $run mpris-proxy
-
 $run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
 $run keynav
 $run unclutter
 
 $run localsend
 $run flclash
 
+sleep 5
+
+i3-msg '[class=Localsend]' kill
+i3-msg '[class=Com.follow.clash]' kill
 #$run barrier

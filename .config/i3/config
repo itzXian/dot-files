@@ -232,12 +232,10 @@ for_window [class=Pcmanfm]		\
   move container to workspace number $ws5
 
 ## Utils
-for_window [class=Com.follow.clash]	\
-  move container to workspace number $ws6
-for_window [class=qv2ray]		\
-  move container to workspace number $ws6
-for_window [class=Localsend]		\
-  move container to workspace number $ws6
+#for_window [class=Com.follow.clash]	\
+  #move container to workspace number $ws6
+#for_window [class=Localsend]		\
+  #move container to workspace number $ws6
 
 ## Tools
 for_window [class=Gimp]		\
@@ -248,10 +246,6 @@ for_window [class=Gnome-boxes]		\
   move container to workspace number $ws7
 
 ## Pop-ups
-for_window [class=Lxterminal		\
-            title=system-upgrade]	\
-  move container to workspace number $ws8	\
-  workspace number $ws8
 for_window [class=Lxterminal		\
             title=temporary]		\
   move container to workspace number $ws8
