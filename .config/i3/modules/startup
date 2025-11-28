@@ -8,8 +8,6 @@ $run xss-lock --transfer-sleep-lock --ignore-sleep -- $lock
 # restore brightness
 $run sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
 
-$run gnome-keyring-daemon --start --components=secrets,pkcs11,ssh
-
 $run blueman-applet
 $run mpris-proxy
 $run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
