@@ -1,5 +1,5 @@
 /* vim:noet */
-@theme "Pop-Dark-FlatRemix"
+//@theme "Pop-Dark-FlatRemix"
 configuration {
 	modi: "drun,run,filebrowser,window";
 	case-sensitive: false;
@@ -26,3 +26,7 @@ configuration {
 	}
 
 }
+
+//@theme "/home/xian/.local/share/rofi/themes/launchpad.rasi"
+
+@theme "/home/xian/.config/rofi/themes/launchpad.rasi"
