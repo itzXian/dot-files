@@ -81,7 +81,7 @@ Plug 'justinmk/vim-sneak'
   let g:sneak#label = 1
 " Syntax and Highlight
 Plug 'kelwin/vim-smali', { 'for': 'smali' }
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+"Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mhinz/vim-startify'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'nikvdp/ejs-syntax', { 'for': '*.ejs' }
@@ -99,6 +99,11 @@ Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 "Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+  \'coc-json',
+  \'coc-git',
+  \'coc-markdownlint',
+\]
   " https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
 
   " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
