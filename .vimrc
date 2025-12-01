@@ -104,6 +104,8 @@ let g:coc_global_extensions = [
   \'coc-git',
   \'coc-markdownlint',
 \]
+let g:mapleader = ','
+  nmap <silent><nowait> cc :<C-u>CocCommand<cr>
   " https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
 
   " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
@@ -205,7 +207,7 @@ let g:coc_global_extensions = [
   nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
   " Run the Code Lens action on the current line
-  nmap <leader>cl  <Plug>(coc-codelens-action)
+  nmap <leader>cl :CocCommand
 
   " Map function and class text objects
   " NOTE: Requires 'textDocument.documentSymbol' support from the language server
