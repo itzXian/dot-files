@@ -4,9 +4,6 @@
 [[ $- != *i* ]] && return
 
 # Preferences
-[[ -n $DISPLAY                &&\
-   -n "$(command -v xset)" ]] &&\
-  xset b off
 
 shopt -s globstar
 shopt -s dirspell

@@ -7,6 +7,7 @@ $run xss-lock --transfer-sleep-lock --ignore-sleep -- $lock
 
 # restore brightness
 $run sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
+$run xset b off
 
 $run blueman-applet
 $run mpris-proxy
