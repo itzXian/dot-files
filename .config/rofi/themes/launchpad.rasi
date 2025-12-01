@@ -34,11 +34,13 @@ inputbar {
   background-color: @bg2;
 
   margin:   0px calc( 50% - 120px );
-  padding:  2px 4px;
+  //padding:  2px 4px;
+  padding:  4px 8px;
   spacing:  4px;
 
   border:         1px;
-  border-radius:  2px;
+  //border-radius:  2px;
+  border-radius:  10px;
   border-color:   @bg3;
 
   children: [icon-search,entry];
@@ -61,8 +63,10 @@ entry {
 
 listview {
   margin:   48px calc( 50% - 560px );
-  spacing:  48px;
-  columns:  6;
+  //spacing:  48;
+  spacing:  24px;
+  //columns:  6;
+  columns:  8;
   fixed-columns: true;
 }
 

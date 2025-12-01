@@ -1,19 +1,20 @@
-/* vim:noet */
+/* vim:noet
+*/
 //@theme "Pop-Dark-FlatRemix"
 configuration {
 	modi: "drun,run,filebrowser,window";
 	case-sensitive: false;
-	cycle: true;
+	cycle: false;
 	filter: "";
 	scroll-method: 0;
 	normalize-match: true;
 	show-icons: true;
-	icon-theme: "Flat-Remix-GTK-Blue-Dakr";
+	icon-theme: "Flat-Remix-GTK-Blue-Dark";
 	steal-focus: false;
 	/*---------- Drun settings ----------*/
 	drun-categories: "";
 	drun-match-fields: "name,generic,exec,categories,keywords";
-	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+	drun-display-format: "{name}\n[<span weight='light' size='small'><i>({generic})</i></span>]";
 	drun-show-actions: true;
 	drun-url-launcher: "xdg-open";
 	drun-use-desktop-cache: false;
@@ -24,7 +25,7 @@ configuration {
 		/** Parse system desktop files. */
 		parse-system: true;
 	}
-
+	eh: 2;
 }
 
 //@theme "/home/xian/.local/share/rofi/themes/launchpad.rasi"
