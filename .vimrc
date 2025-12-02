@@ -105,7 +105,7 @@ let g:coc_global_extensions = [
   \'coc-markdownlint',
 \]
 let g:mapleader = ','
-  nmap <silent><nowait> cc :<C-u>CocCommand<cr>
+  nmap <silent><nowait> Cc :<C-u>CocCommand<cr>
   " https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
 
   " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
