@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+if [ -e /usr/share/blesh/ble.sh ]; then
+  [[ $- == *i* ]] && source /usr/share/blesh/ble.sh
+elif [ -e "$(find $HOME -type f -name ble.sh)" ]; then
+  LC_CTYPE=POSIX
+  source "$(find $HOME -type f -name ble.sh)"
+fi
