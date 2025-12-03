@@ -2,18 +2,16 @@
 
 run='i3-msg exec'
 
-$run pkill picom
-
+$run ~/.fehbg
+$run xrdb ~/.Xresources
+$run xmodmap ~/.xmodmaprc
 $run trap 'echo fuck it ERROR OCC' ERR
-$run xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
+$run pkill picom
 
 $run deadd-notification-center
 $run fcitx
 $run nm-applet
 $run blueman-tray
-
-$run ~/.fehbg
-$run xrdb ~/.Xresources
-$run xmodmap ~/.xmodmaprc
 
 $run picom

@@ -28,6 +28,7 @@ font pango:Roboto 12
 
 exec        $temporarily_run bash ~/.config/i3/modules/startup
 exec_always $temporarily_run bash ~/.config/i3/modules/restart
+exec        $temporarily_run xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 # Function Keys
 bindsym XF86MonBrightnessUp	exec --no-startup-id sudo xbacklight -inc 4 && $brightness && $refresh_i3status
