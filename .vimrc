@@ -376,9 +376,12 @@ set hls
 set fdm=indent
 set fdl=28
 "set nowrap
+set signcolumn=auto
 set nu
   au! InsertEnter * set rnu
   au! InsertLeave * set nornu
+  au! ModeChanged *:[vV\x16]* :set nonu signcolumn=no
+  au! ModeChanged [vV\x16]*:* :set nu signcolumn=auto
 set listchars=tab:‹-›,trail:■
 set list
 set wildmenu
