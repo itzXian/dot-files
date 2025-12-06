@@ -5,4 +5,8 @@ export XDG_SESSION_TYPE=x11
 
 export DESKTOP_SESSION=gnome
 
-startx $@
+if [[ $@ = *i3* ]]; then
+  startx
+else
+  startx $@
+fi
