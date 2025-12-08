@@ -5,7 +5,7 @@ if [[ $BASH = *termux* ]]; then
     pacmd load-module module-pipe-sink file=$PREFIX/tmp/snapfifo sink_name=Snapcast format=s16le rate=48000
     pacmd update-sink-proplist Snapcast device.description=Snapcast
     pacmd set-default-sink Snapcast
-    snapserver & &>/dev/null
+    snapserver &>/dev/null &
     cmus
     pkill snapserver
   }
