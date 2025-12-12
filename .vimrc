@@ -390,6 +390,13 @@ set shm=a
 set ch=2
 set autoread
 "set autochdir
+augroup AutoChdirOnce
+  autocmd!
+  autocmd VimEnter * if argc() > 0 || (has('nvim') && len(v:argv) > 0) | 
+        \ cd %:p:h | 
+        \ autocmd! AutoChdirOnce VimEnter * 
+        \ endif
+augroup END
 set splitbelow
 set splitright
 "set bufhidden=wipe
