@@ -1,12 +1,14 @@
 #!/usr/bin/sh
-if [[ $BASH = *termux* ]]; then
-  Cmus() {
-    pulseaudio --start
-    pacmd load-module module-pipe-sink file=$PREFIX/tmp/snapfifo sink_name=Snapcast format=s16le rate=48000
-    pacmd update-sink-proplist Snapcast device.description=Snapcast
-    pacmd set-default-sink Snapcast
-    snapserver &>/dev/null &
-    cmus
-    pkill snapserver
-  }
+if [[ $BASH != *termux* ]]; then
+  return
 fi
+
+Cmus() {
+  pulseaudio --start
+  pacmd load-module module-pipe-sink file=$PREFIX/tmp/snapfifo sink_name=Snapcast format=s16le rate=48000
+  pacmd update-sink-proplist Snapcast device.description=Snapcast
+  pacmd set-default-sink Snapcast
+  snapserver &>/dev/null &
+  cmus
+  pkill snapserver
+}

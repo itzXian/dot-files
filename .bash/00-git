@@ -1,71 +1,70 @@
 #!/usr/bin/sh
  # git
-!  [ -n "$(command -v git)" ] && return
-if [ -n "$(command -v git)" ]; then
-   alias Ga='git add'
-   alias Gm='git commit -m'
-   alias Gp='git push'
-   alias Gpl='git pull'
-   alias Gcl='git clone'
-   alias Gc='git checkout'
-   alias Gb='git branch'
-   alias Gs='git status'
-   alias Gr='git reset'
-   alias Gls='git ls-files'
-   alias Grm='git rm'
+[ -z "$(command -v git)" ] && return
 
-  Gl () {
-    local iro+='%C(yellow)'
-    local iro+='%h'
+alias Ga='git add'
+alias Gm='git commit -m'
+alias Gp='git push'
+alias Gpl='git pull'
+alias Gcl='git clone'
+alias Gc='git checkout'
+alias Gb='git branch'
+alias Gs='git status'
+alias Gr='git reset'
+alias Gls='git ls-files'
+alias Grm='git rm'
 
-    local iro+='	'
+Gl () {
+  local iro+='%C(yellow)'
+  local iro+='%h'
 
-    local iro+='%Creset'
-    local iro+='%C(bold)'
-    local iro+='%s'
+  local iro+='	'
 
-    local iro+=' '
+  local iro+='%Creset'
+  local iro+='%C(bold)'
+  local iro+='%s'
 
-    local iro+='%Creset'
-    local iro+='%Cgreen'
-    local iro+='%cr'
+  local iro+=' '
 
-    local iro+=' '
+  local iro+='%Creset'
+  local iro+='%Cgreen'
+  local iro+='%cr'
 
-    local iro+='%Creset'
-    local iro+='%C(yellow)'
-    local iro+='%D'
+  local iro+=' '
 
-    local iro+=' '
+  local iro+='%Creset'
+  local iro+='%C(yellow)'
+  local iro+='%D'
 
-    local iro+='%an'
+  local iro+=' '
 
-    git log                   \
-      --graph                 \
-      --pretty=format:"$iro"  \
-      --abbrev-commit         \
-      $@
-  }
+  local iro+='%an'
 
-  Gd  () {
-    if [ -n "$(command -v diff-so-fancy)" ]; then
-      git diff $@ | diff-so-fancy
-    else
-      git diff $@
-    fi
-  }
+  git log                   \
+    --graph                 \
+    --pretty=format:"$iro"  \
+    --abbrev-commit         \
+    $@
+}
 
-  GA  () {
-    if [ $# -ge 1 ]; then
-      git add $@
-    else
-      git add .
-    fi
-    git commit -m "Manually Save at $(date)"
-  }
+Gd  () {
+  if [ -n "$(command -v diff-so-fancy)" ]; then
+    git diff $@ | diff-so-fancy
+  else
+    git diff $@
+  fi
+}
 
-  GAM () { git add ${@:1:$#-1} && git commit -m "${@: -1}"; }
-  GMA () { git add ${@:2:$#} && git commit -m "$1"; }
-  GR  () { git reset --soft HEAD^; }
-  GRM () { git reset --soft HEAD^ && git commit -m "$1"; }
-fi
+GA  () {
+  if [ $# -ge 1 ]; then
+    git add $@
+  else
+    git add .
+  fi
+  git commit -m "Manually Save at $(date)"
+}
+
+GAM () { git add ${@:1:$#-1} && git commit -m "${@: -1}"; }
+GMA () { git add ${@:2:$#} && git commit -m "$1"; }
+GR  () { git reset --soft HEAD^; }
+GRM () { git reset --soft HEAD^ && git commit -m "$1"; }

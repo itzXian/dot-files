@@ -1,8 +1,10 @@
 #!/usr/bin/sh
 # for Termux:Float
-if [[ $BASH = *termux* ]]; then
-  if [ $(tput cols) -lt 50 ]; then
-    echo -e "\033[6 q"
-    vim /dev/null
-  fi
+if [[ $BASH != *termux* ]]; then
+  return
+fi
+
+if [ $(tput cols) -lt 50 ]; then
+  echo -e "\033[6 q"
+  vim /dev/null
 fi

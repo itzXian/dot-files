@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 # flutter bash-completion
-!  [ -n "$(command -v flutter)" ] && return
-if [ -n "$(command -v flutter)" ]; then
+[ -z "$(command -v flutter)" ] && return
+
 if type complete &>/dev/null; then
   __flutter_completion() {
     local si="$IFS"
@@ -41,5 +41,4 @@ elif type compctl &>/dev/null; then
     IFS="$si"
   }
   compctl -K __flutter_completion flutter
-fi
 fi
