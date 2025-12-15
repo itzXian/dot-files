@@ -298,7 +298,7 @@ tno <C-k>e <C-w>:call Netrw()    <CR>
 
   let g:netrw_banner=0
   let g:netrw_sizestyle="H"
-  let g:netrw_liststyle=3 "<C-l> issue
+  let g:netrw_liststyle=0
   let g:netrw_winsize=0
   let g:netrw_bufsettings="wrap"
 
