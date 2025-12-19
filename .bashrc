@@ -7,6 +7,7 @@
 
 shopt -s globstar
 shopt -s dirspell
+shopt -s cdspell
 shopt -s autocd
 shopt -s checkwinsize
 shopt -s complete_fullquote
