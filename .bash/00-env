@@ -1,0 +1,38 @@
+#!/usr/bin/sh
+# PATH
+ # pnpm
+if [ -n "$(command -v pnpm)" ]; then
+  export PNPM_HOME="/home/ei/.local/share/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi
+ # yarn
+[[ -n "$(command -v yarn)"                                    &&\
+  $(uname -n) != localhost                                    &&\
+  $BASH       != *termux*                                     &&\
+  $PATH       != *yarn*                                       &&\
+   -d         $(yarn global bin)                           ]] &&\
+  export PATH="$PATH:$(yarn global bin)"
+ # ruby
+[[ -n "$(command -v ruby)"                                    &&\
+   $PATH      != *ruby*                                       &&\
+   -d                $(ruby -e 'puts Gem.user_dir')/bin    ]] &&\
+  export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+ # python
+[[ -n "$(command -v python)"                                  &&\
+   $PATH      != *$HOME/.local/bin*                           &&\
+   -d             ~/.local/bin                             ]] &&\
+  export PATH="$PATH:$HOME/.local/bin"
+ # android-studio
+[[ -n "$(command -v android-studio)"                          &&\
+   $PATH      != *Android*                                    &&\
+   -d                ~/Android/Sdk/tools/bin               ]] &&\
+  export PATH="$PATH:~/Android/Sdk/tools/bin"                 &&\
+  export ANDROID_HOME=~/Android/Sdk                           &&\
+ # rofi
+export PATH="$PATH:~/.config/rofi/bin"
+ # local bin
+[[ -d              ~/.local/bin                           ]] &&\
+export PATH="$PATH:~/.local/bin"
