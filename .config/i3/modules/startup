@@ -2,16 +2,18 @@
 
 run='i3-msg exec'
 
-$run xrdb ~/.Xresources
-$run xset b off
+$run "xrdb ~/.Xresources"
+$run "xset b off"
 lock='i3lock-fancy -n && $temporarily_run xmodmap ~/.xmodmaprc'
-$run xss-lock --transfer-sleep-lock --ignore-sleep -- $lock
+$run "xss-lock --transfer-sleep-lock --ignore-sleep -- $lock"
 # restore brightness
-$run sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')
+$run "sudo xbacklight -set $(cat ~/.config/i3status/brightness | sed 's/%//')"
 
+$run "dbus-update-activation-environment -all"
 $run blueman-applet
 $run mpris-proxy
 $run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+$run "gnome-keyring-daemon -r -d"
 $run keynav
 $run unclutter
 
@@ -20,6 +22,6 @@ $run flclash
 
 sleep 5
 
-i3-msg '[class=Localsend]' kill
-i3-msg '[class=Com.follow.clash]' kill
+i3-msg "[class=Localsend]" kill
+i3-msg "[class=Com.follow.clash]" kill
 #$run barrier
