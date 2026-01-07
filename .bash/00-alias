@@ -112,6 +112,7 @@ alias .....='../../../../'
 }
 
 alias .b='. ~/.bashrc'
+alias .z='source ~/.zshrc'
 alias C=clear
 alias c=clear
 alias R=reset
@@ -241,6 +242,7 @@ if [ -n "$(command -v vim)" ]; then
    alias Vd='vimdiff'
    alias Vs='vim -S'
    alias Vb='Vsf ~/.bashrc'
+   alias Vz='Vsf ~/.zshrc'
    alias Vv='Vsf ~/.vimrc'
    alias Vt='Vsf ~/.tmux.conf'
    alias Vx='Vsf ~/.Xresources'
