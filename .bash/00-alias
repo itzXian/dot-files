@@ -280,3 +280,5 @@ fi
   }
 
 alias dfs='git --git-dir=$(find $HOME -maxdepth 2 -name dot-files 2>/dev/null)/.git --work-tree=$HOME'
+[[ -n "$(command -v lazygit)" ]] &&\
+alias dfs-lazy='lazygit --git-dir=$(find $HOME -maxdepth 2 -name dot-files 2>/dev/null)/.git --work-tree=$HOME'
