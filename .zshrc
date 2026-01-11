@@ -34,10 +34,16 @@ plugins+=(zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
-[[ -d ~/.bash ]] &&\
-for i in ~/.bash/*; do
-  source "$i";
-done
+# Set up fzf key bindings and fuzzy completion
+if [ -n "$(command -v fzf)" ]; then
+    source <(fzf --zsh)
+fi
+
+if [ -d ~/.bash ]; then
+    for i in ~/.bash/*; do
+        source "$i";
+    done
+fi
 
 # Print startup time of zsh
 #time zsh -i -c exit
