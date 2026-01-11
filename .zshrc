@@ -1,4 +1,7 @@
 # ~/.zshrc
+# Debug startup time of zsh, put this command at the top
+#zmodload zsh/zprof
+
 export ZSH="$HOME/.oh-my-zsh"
 
 DISABLE_AUTO_UPDATE="true"
@@ -35,3 +38,8 @@ source $ZSH/oh-my-zsh.sh
 for i in ~/.bash/*; do
   source "$i";
 done
+
+# Print startup time of zsh
+#time zsh -i -c exit
+# Debug startup time of zsh, put this command at the bottom
+#zprof
