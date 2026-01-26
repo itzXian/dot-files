@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 # for TERMUX
-[[ $BASH != *termux* ]] && return
+[[ $SHELL != *termux* ]] && return
 
 ChFont2 () {
   if [ -e "$1" ]; then
