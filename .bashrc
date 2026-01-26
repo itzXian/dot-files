@@ -61,6 +61,14 @@ fi
 }
 fancy_bash_prompt off
 
+# https://github.com/akinomyoga/ble.sh
+if [ -e /usr/share/blesh/ble.sh ]; then
+  [[ $- == *i* ]] && source /usr/share/blesh/ble.sh
+elif [ -e "$(find $HOME -maxdepth 4 -type f -name ble.sh)" ] ; then
+  [[ $BASH = *termux* ]] && LC_CTYPE=C.UTF-8
+  source "$(find $HOME -maxdepth 4 -type f -name ble.sh)"
+fi
+
 # command-not-found on Arch Linux
 [ -e /usr/share/doc/pkgfile/command-not-found.bash ] &&\
    . /usr/share/doc/pkgfile/command-not-found.bash

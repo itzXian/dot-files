@@ -1,28 +1,21 @@
-# ~/.zshrc
-# Debug startup time of zsh, put this command at the top
-#zmodload zsh/zprof
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-export ZSH="$HOME/.oh-my-zsh"
+# ~/.zshrc
+
+# Debug startup time of zsh, put this command at the top
+zmodload zsh/zprof
 
 DISABLE_AUTO_UPDATE="true"
 DISABLE_MAGIC_FUNCTIONS="true"
-DISABLE_COMPFIX="true"
+ZSH_DISABLE_COMPFIX="true"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-spaceship() {
-    ZSH_THEME="spaceship"
-    # git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
-    # ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-    SPACESHIP_PROMPT_ASYNC=true
-    SPACESHIP_PROMPT_ADD_NEWLINE=true
-    SPACESHIP_PROMPT_ORDER=(
-        user
-        dir
-        git
-        line_sep
-        char
-    )
-};spaceship;unset spaceship
-
+export ZSH="$HOME/.oh-my-zsh"
 plugins+=(git)
 plugins+=(zsh-autosuggestions)
     # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -31,7 +24,6 @@ plugins+=(zsh-autosuggestions)
 plugins+=(zsh-syntax-highlighting)
     # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 source $ZSH/oh-my-zsh.sh
 
 # Set up fzf key bindings and fuzzy completion
@@ -45,7 +37,10 @@ if [ -d ~/.bash ]; then
     done
 fi
 
-# Print startup time of zsh
-#time zsh -i -c exit
-# Debug startup time of zsh, put this command at the bottom
+# Debug startup time of zsh, put this command at the bottom,
 #zprof
+# or manually print startup time of zsh
+#time zsh -i -c zprof
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
