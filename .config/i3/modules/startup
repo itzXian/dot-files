@@ -18,10 +18,11 @@ $run keynav
 $run unclutter
 
 $run localsend
-$run flclash
+#$run flclash
+$run mihomo
 
 sleep 5
 
 i3-msg "[class=Localsend]" kill
-i3-msg "[class=Com.follow.clash]" kill
+#i3-msg "[class=Com.follow.clash]" kill
 #$run barrier
