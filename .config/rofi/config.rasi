@@ -26,4 +26,4 @@ configuration {
 	eh: 2;
 }
 
-@theme "~/.config/rofi/themes/launchpad.rasi"
+@theme "launchpad"
