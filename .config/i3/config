@@ -62,6 +62,8 @@ bindsym $mod+Shift+c	reload
 bindsym $mod+Control+c	exec i3-input -F 'rename workspace to "%s"' -P 'New name of current workspace: '
 bindsym $mod+d	exec echo -n $(date '+%Y-%m-%d') | xsel -b
 bindsym $mod+r	exec rofi -show drun
+bindsym $mod+v	exec clipcat-menu
+bindcode $mod+23	exec rofi -show window
 bindsym $mod+t	exec echo -n $(date '+%Y-%m-%d %H:%M:%S') | xsel -b
 bindsym $mod+Return	exec i3-sensible-terminal
 
@@ -70,8 +72,9 @@ bindsym $mod+s	sticky toggle
 bindsym $mod+w	layout tabbed
 bindsym $mod+e	layout toggle split
 bindsym $mod+Control+e	exec i3-msg exit
-bindsym $mod+v	split v
-bindsym $mod+Shift+v	split h
+#bindsym $mod+Shift+v	split v
+#bindsym $mod+Shift+h	split h
+bindsym $mod+Shift+v	layout toggle split
 bindsym $mod+b	bar mode invisible
 bindsym $mod+Shift+b	bar mode dock
 bindsym $mod+Shift+space	floating toggle
@@ -223,6 +226,7 @@ for_window [all] border pixel 0 floating enable
 for_window [class=Chromium]		\
   move container to workspace number $ws1
 for_window [class=firefox]		\
+  floating disable		\
   move container to workspace number $ws1
 for_window [class=Google-chrome]	\
   move container to workspace number $ws1
