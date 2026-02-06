@@ -309,7 +309,7 @@ bar {
     set $red3 "#9F3835"
     set $blu1 "#9397CB"
     set $blu2 "#DDE2E9"
-    set $blu3 "#3A3D46"
+    set $blu3 "#272A34"
     background          $blu3
     statusline          $blu2
     separator           $blu2
