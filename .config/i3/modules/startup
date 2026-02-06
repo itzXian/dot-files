@@ -20,10 +20,10 @@ $run unclutter
 $run localsend
 #$run flclash
 $run pkill mihomo
-$run mihomo
 
 sleep 5
 
+$run mihomo
 i3-msg "[class=Localsend]" kill
 #i3-msg "[class=Com.follow.clash]" kill
 #$run barrier
