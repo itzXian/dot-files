@@ -52,20 +52,20 @@ ethernet _first_ {
 }
 
 battery 0 {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %percentage  </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'>󰂂</span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %percentage</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
   path	= "/sys/class/power_supply/BAT1/uevent"
   last_full_capacity	= true
   integer_battery_capacity	= true
   low_threshold	= 20
   threshold_type = percentage
   hide_seconds = true
-  status_chr = ""
-  status_bat = ""
-  status_full = ""
+  status_chr = "󰂄"
+  status_bat = "󰂎"
+  status_full = "󰁹"
 }
 
 disk "/" {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %avail  </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %avail</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
 }
 
 load {
@@ -74,11 +74,11 @@ load {
 }
 
 cpu_usage {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %usage  </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %usage</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
 }
 
 memory {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'> 﫭 </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %used  </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'>﫭</span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %used</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
   threshold_degraded	= "500M"
   format_degraded	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %used  </span>"
 }
@@ -92,11 +92,11 @@ tztime custom {
 }
 
 tztime date {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %F </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %F</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
 }
 
 tztime time {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %H:%M </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %H:%M</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
 }
 
 read_file date {
@@ -114,18 +114,18 @@ read_file update {
 }
 
 read_file brightness {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %content  </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %content</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
   path	= "/home/xian/.config/i3status/brightness"
 }
 
 read_file checkupdates {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %content  </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %content</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
   path	= "/home/xian/.config/i3status/checkupdates"
 }
 
 volume master {
-  format	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %volume  </span>"
-  format_muted	= "<span foreground='#00000033' background='#FFFFFFCC'>  </span><span foreground='#FFFFFFCC' background='#FFFFFF66'>  %volume  </span>"
+  format	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %volume</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
+  format_muted	= "<span foreground='#FFFFFFCC' background='#3A3D46FF'></span><span foreground='#00000033' background='#FFFFFFCC'></span><span foreground='#FFFFFFCC' background='#FFFFFF66'> %volume</span><span foreground='#FFFFFF66' background='#3A3D46FF'></span>"
   device	= "pulse:alsa_output.pci-0000_00_09.2.analog-stereo"
 }
 
