@@ -6,13 +6,3 @@ $run ~/.fehbg
 $run xrdb ~/.Xresources
 $run xmodmap ~/.xmodmaprc
 $run trap 'echo fuck it ERROR OCC' ERR
-
-$run pkill picom
-
-$run deadd-notification-center
-$run fcitx5
-$run nm-applet
-$run blueman-tray
-
-sleep 1
-$run picom

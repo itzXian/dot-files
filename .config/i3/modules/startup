@@ -17,6 +17,12 @@ $run "gnome-keyring-daemon -r -d"
 #$run keynav
 $run unclutter
 
+$run picom
+$run deadd-notification-center
+$run fcitx5
+$run nm-applet
+$run blueman-tray
+
 $run localsend
 #$run flclash
 $run pkill mihomo
