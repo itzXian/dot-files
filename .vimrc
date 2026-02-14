@@ -81,10 +81,7 @@ Plug 'justinmk/vim-sneak'
     let g:sneak#label = 1
 " Syntax and Highlight
 Plug 'kelwin/vim-smali', { 'for': 'smali' }
-"Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'mhinz/vim-startify'
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'nikvdp/ejs-syntax', { 'for': '*.ejs' }
 Plug 'lfv89/vim-interestingwords'
     no <silent> <C-k>k :call InterestingWords('n')<CR>
     no <silent> <C-k>K :call UncolorAllWords()<CR>
@@ -92,12 +89,6 @@ Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
     let dart_html_in_string=v:true
     let dart_style_guide=2
 " Completion
-"Plug 'prabirshrestha/vim-lsp'
-"Plug 'mattn/vim-lsp-settings'
-"Plug 'prabirshrestha/asyncomplete.vim'
-"Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-"Plug 'jiangmiao/auto-pairs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = [
     \'coc-json',
