@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 # for Termux:Float
-if [[ $BASH != *termux* ]]; then
+if [[ $SHELL != *termux* ]]; then
   return
 fi
 
