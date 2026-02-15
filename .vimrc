@@ -351,13 +351,15 @@ colo default
     hi DiffChange	ctermfg=7	ctermbg=NONE
     hi DiffText	ctermfg=3	ctermbg=234
     hi VertSplit	cterm=NONE	ctermfg=234	ctermbg=234
-    hi Visual	cterm=reverse
+    "hi Visual	cterm=reverse
     hi StatusLine	cterm=NONE	ctermbg=234
     hi StatusLineNC	cterm=NONE	ctermfg=234	ctermbg=234
     hi ToolbarLine	cterm=NONE
     set cursorline
-    hi CursorLine	term=bold	cterm=NONE
-    hi CursorLineNr	term=bold	cterm=bold
+    set cursorcolumn
+    hi CursorLine	term=bold	cterm=bold	ctermbg=0
+    hi CursorColumn	term=bold	cterm=bold	ctermbg=0
+    hi CursorLineNr	cterm=bold	cterm=bold
 
 set directory="~/.vim/swapfiles//,~/tmp,/var/tmp,/tmp"
 set hls
