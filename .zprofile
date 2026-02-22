@@ -1,9 +1,7 @@
-# ~/.bash_profile
+# ~/.zprofile
 
 # Envrionment variable
 export _JAVA_AWT_WM_NONREPARENTING=1
-
-[ -f ~/.bashrc ] && . ~/.bashrc
 
 # Custom keyboard remapping
 # Disable Caps Lock
