@@ -250,7 +250,6 @@ window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
-*/
 window-rule {
     match app-id=r#"^gnome-control-center$"#
     match app-id=r#"^pavucontrol$"#
@@ -292,6 +291,7 @@ window-rule {
 debug {
     honor-xdg-activation-with-invalid-serial
 }
+*/
 
 // Override to disable super+tab
 recent-windows {
