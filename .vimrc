@@ -58,15 +58,6 @@ Plug 'vim-airline/vim-airline'
             \  [ 'indent', 'trailing', 'long', 'mixed-indent-file', 'conflicts' ]
 
     endif
-Plug 'edkolev/tmuxline.vim'
-    let g:tmuxline_powerline_separators = 0
-    let g:tmuxline_preset = {
-        \'a'    : '#S',
-        \'win'  : '#I: #W',
-        \'cwin' : '#W',
-        \'z'    : '#(whoami)',
-        \'x'    : '%a,%H:%M'
-    \}
 " Behavior
 Plug '907th/vim-auto-save'
     let g:auto_save=1
