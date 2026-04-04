@@ -14,6 +14,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin('~/.vim/plugged')
 
 " Look and Feel
+Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
@@ -330,7 +331,7 @@ syntax on
         \setl sts=16
     au! BufReadPost *.arb |
         \setl syn=json
-colo default
+colo dracula
     set bg=dark
     hi Folded	ctermfg=8	ctermbg=NONE
     hi LineNr	ctermfg=8	ctermbg=NONE
