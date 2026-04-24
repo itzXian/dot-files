@@ -74,7 +74,7 @@ bindsym $mod+Control+e	exec i3-msg exit
 #bindsym $mod+Shift+v	split v
 #bindsym $mod+Shift+h	split h
 bindsym $mod+Shift+v	layout toggle split
-bindsym $mod+b	bar mode invisible
+bindsym $mod+b	bar mode toggle
 bindsym $mod+Shift+b	bar mode dock
 bindsym $mod+Shift+space	floating toggle
  floating_modifier	$mod
