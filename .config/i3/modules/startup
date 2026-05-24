@@ -23,13 +23,13 @@ $run fcitx5
 $run nm-applet
 $run blueman-tray
 
-$run localsend
+#$run localsend
 #$run flclash
-$run pkill mihomo
+#$run pkill mihomo
 
-sleep 5
+#sleep 5
 
-$run mihomo
-i3-msg "[class=Localsend]" kill
+#$run mihomo
+#i3-msg "[class=Localsend]" kill
 #i3-msg "[class=Com.follow.clash]" kill
 #$run barrier
