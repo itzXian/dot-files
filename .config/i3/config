@@ -18,17 +18,20 @@ set $brightness echo $(xbacklight -get)% > ~/.config/i3status/brightness
 #set $lock i3lock -i ~/.config/i3/wallpaper -c 272A34 -e -f -n
 set $lock bash ~/.config/i3/modules/lock
 set $refresh_i3status killall -SIGUSR1 i3status
-set $temporarily_run lxterminal -t temporary -e
+set $temporarily_run alacritty -T temporary -e
 # Default Applications
 set $browser firefox
 #set $browser chromium --password-store=gnome
-set $terminal lxterminal
+set $terminal alacritty
 
 font pango:Roboto 12
 
-exec        $temporarily_run bash ~/.config/i3/modules/startup
-exec_always $temporarily_run bash ~/.config/i3/modules/restart
-exec        $temporarily_run xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+#exec        $temporarily_run bash ~/.config/i3/modules/startup
+exec        bash ~/.config/i3/modules/startup
+#exec_always $temporarily_run bash ~/.config/i3/modules/restart
+exec_always bash ~/.config/i3/modules/restart
+#exec        $temporarily_run xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+exec        bash 'clear Lock' -e 'keycode 0x42 = Escape'
 
 # Function Keys
 bindsym XF86MonBrightnessUp	exec --no-startup-id sudo xbacklight -inc 4 && $brightness && $refresh_i3status
@@ -231,7 +234,7 @@ for_window [class=Google-chrome]	\
   move container to workspace number $ws1
 
 ## Terminals
-for_window [class="(Lxterminal|URxvt)"]	\
+for_window [class="(Lxterminal|URxvt|Alacritty)"]	\
   floating disable		\
   move container to workspace number $ws2
 
