@@ -245,7 +245,7 @@ for_window [class=vlc]		\
   move container to workspace number $ws4
 
 ## Files
-for_window [class=Pcmanfm]		\
+for_window [class="(Pcmanfm|pcmanfm-qt)"]	\
   move container to workspace number $ws5
 
 ## Utils
