@@ -55,7 +55,7 @@ bindsym XF86AudioPrev	exec --no-startup-id playerctl previous
 ## custom utils
 bindsym $mod+Control+l	exec $lock
 bindsym $mod+Control+v	exec Viper switch && $refresh_i3status
-bindsym $mod+Shift+w	exec $temporarily_run SS u
+bindsym $mod+Shift+w	exec bash SS u
 bindsym $mod+Control+s	exec $temporarily_run "sleep 1 && xset -display :1 dpms force off && sleep 2 && systemctl suspend"
 bindsym $mod+Shift+f	exec scrot -e 'mv "$f" ~/Pictures/' "Screenshot_%Y%m%d-%H%M%S_Workspace$(expr $(xdotool get_desktop) + 1).png"
 ## i3 base actions
@@ -263,7 +263,7 @@ for_window [class=Gnome-boxes]		\
   move container to workspace number $ws7
 
 ## Pop-ups
-for_window [class=Lxterminal		\
+for_window [class=(Lxterminal|Alacritty)	\
             title=temporary]		\
   move container to workspace number $ws8
 for_window [class=".*"		\
