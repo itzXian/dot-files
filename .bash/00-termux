@@ -22,5 +22,7 @@ ChColo2 () {
   termux-reload-settings
 }
 
+alias sv-status='for i in $(dir $PREFIX/var/service); do sv status "$i"; done;'
+
 [ -e $PREFIX/share/bash-completion/bash_completion ] &&\
    . $PREFIX/share/bash-completion/bash_completion
