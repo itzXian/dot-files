@@ -1,7 +1,7 @@
 spawn-at-startup "fcitx5"
 spawn-at-startup "sh" "-c" "pidof mihomo || exec mihomo"
 spawn-at-startup "gnome-keyring-daemon" "-r" "-d"
-spawn-at-startup "localsend"
+//spawn-at-startup "localsend"
 /*
 spawn-at-startup "swayidle" "-w" \
     "timeout" "300" "'dms' 'ipc' 'call' 'lock' 'lock'" \

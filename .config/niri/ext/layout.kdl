@@ -1,0 +1,27 @@
+layout {
+    gaps 8
+
+    border {
+        off
+        width 1
+    }
+    focus-ring {
+        off
+        width 1
+    }
+    background-color "transparent"
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.5
+        proportion 1.0
+    }
+    default-column-width { proportion 0.75; }
+    shadow {
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+    struts {
+    }
+}
