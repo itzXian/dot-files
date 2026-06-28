@@ -1,6 +1,5 @@
 layout {
     gaps 8
-
     border {
         off
         width 1
@@ -17,9 +16,10 @@ layout {
     }
     default-column-width { proportion 0.75; }
     shadow {
-        softness 30
-        spread 5
-        offset x=0 y=5
+        off
+        softness 10
+        spread 1
+        offset x=0 y=1
         color "#0007"
     }
     struts {
