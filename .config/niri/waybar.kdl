@@ -1,0 +1,40 @@
+    // Clipboard
+        // wl-clipboard
+// Notification
+spawn-at-startup "mako"
+// Wifi
+spawn-at-startup "nm-applet"
+// Bluetooth
+spawn-at-startup "blueman-applet"
+spawn-at-startup "mpris-proxy"
+spawn-at-startup "blueman-tray"
+spawn-at-startup "waybar"
+spawn-at-startup "swayidle" "-w" \
+    "timeout" "200" "niri msg action power-off-monitors" \
+    "timeout" "300" "swaylock -i ~/.config/wallpaper" \
+    "before-sleep"  "swaylock -i ~/.config/wallpaper"
+spawn-sh-at-startup "swaybg -i ~/.config/wallpaper"
+
+binds {
+    Mod+R hotkey-overlay-title="Application Launcher" {
+        spawn "rofi" "-show" "drun"
+    }
+    Mod+Ctrl+L hotkey-overlay-title="Lock Screen" {
+        spawn "swaylock" "--daemonize" "-i" "~/.config/wallpaper"
+    }
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "sudo" "brightnessctl" "s" "5%+"
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "sudo" "brightnessctl" "s" "5%-"
+    }
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "+5%";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "-5%";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn "pactl" "set-sink-volume" "@DEFAULT_SINK@" "toggle";
+    }
+}

@@ -1,5 +1,4 @@
 binds {
-
     Print      { screenshot; }
     Mod+Tab    { toggle-overview; }
     Mod+Return { spawn "alacritty"; }

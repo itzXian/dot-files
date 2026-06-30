@@ -12,6 +12,7 @@ layer-rule {
 }
 layer-rule {
     match namespace="^quickshell$"
+    match namespace="wallpaper"
     place-within-backdrop true
 }
 window-rule {
