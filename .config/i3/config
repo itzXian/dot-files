@@ -18,11 +18,11 @@ set $brightness echo $(xbacklight -get)% > ~/.config/i3status/brightness
 #set $lock i3lock -i ~/.config/wallpaper -c 272A34 -e -f -n
 set $lock bash ~/.config/i3/modules/lock
 set $refresh_i3status killall -SIGUSR1 i3status
-set $temporarily_run alacritty -T temporary -e
+set $temporarily_run lxterminal -t temporary -e
 # Default Applications
 set $browser firefox
 #set $browser chromium --password-store=gnome
-set $terminal alacritty
+set $terminal lxterminal
 
 font pango:Roboto 12
 
