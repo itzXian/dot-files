@@ -16,6 +16,8 @@ call plug#begin('~/.vim/plugged')
 " Look and Feel
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Yggdroot/indentLine'
+    let g:indentLine_leadingSpaceEnabled = 1
+    let g:indentLine_indentLevel = 1
 Plug 'vim-airline/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -363,10 +365,6 @@ set fdl=28
 "set nowrap
 set signcolumn=auto
 set nu
-    au! InsertEnter * set rnu
-    au! InsertLeave * set nornu
-    au! ModeChanged *:[vV\x16]* :set nonu signcolumn=no
-    au! ModeChanged [vV\x16]*:* :set nu signcolumn=auto
 set listchars=tab:‹-›,trail:■
 set list
 set wildmenu
@@ -481,3 +479,33 @@ function! ScrollBind()
     endif
 endfunction
 no <C-k>s :call ScrollBind()<CR>
+
+function! RunOnInsertModeEnter()
+    :set rnu
+endfunction
+
+function! RunOnInsertModeLeave()
+    :set nornu
+endfunction
+
+function! RunOnVisualModeEnter()
+    :set nonu signcolumn=no
+    :IndentLinesDisable
+endfunction
+
+function! RunOnVisualModeLeave()
+    :set nu signcolumn=auto
+    :IndentLinesEnable
+endfunction
+
+augroup InsertModeEvent
+    autocmd!
+    autocmd InsertEnter * :call RunOnInsertModeEnter()
+    autocmd InsertLeave * :call RunOnInsertModeLeave()
+augroup end
+
+augroup VisualModeEvent
+    autocmd!
+    autocmd ModeChanged *:[vV\x16]* :call RunOnVisualModeEnter()
+    autocmd ModeChanged [vV\x16]*:* :call RunOnVisualModeLeave()
+augroup end
