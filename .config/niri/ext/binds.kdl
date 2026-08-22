@@ -1,7 +1,7 @@
 binds {
     Print      { screenshot; }
     Mod+Tab    { toggle-overview; }
-    Mod+Return { spawn "alacritty"; }
+    Mod+Return { spawn "lxterminal"; }
 
     // Window actions
     Mod+Q           { close-window; }
