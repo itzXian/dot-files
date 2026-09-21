@@ -1,7 +1,7 @@
 #!/bin/bash
 ARIA2_CONF="$HOME/.config/aria2/aria2.conf"
 PERSISTENT_TRACKERS_FILE="$HOME/.config/aria2/persistent_trackers_list.txt"
-TRACKER_URL="https://cf.trackerslist.com/all.txt"
+TRACKER_URL="https://raw.githubusercontent.com/ngosang/trackerslist/refs/heads/master/trackers_best.txt"
 INIT="openrc"
 ARIA2_SERVICE="aria2"
 
