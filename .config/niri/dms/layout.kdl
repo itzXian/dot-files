@@ -4,14 +4,14 @@
 // ! PLACE YOUR CUSTOM CONFIGURATION ELSEWHERE !
 
 layout {
-    gaps 8
+    gaps 4
 
     border {
-        width 0
+        width 2
     }
 
     focus-ring {
-        width 0
+        width 2
     }
 }
 

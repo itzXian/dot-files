@@ -33,6 +33,7 @@ overview {
     workspace-shadow {
         off
     }
+    zoom 0.33
 }
 environment {
     XDG_CURRENT_DESKTOP "niri"
