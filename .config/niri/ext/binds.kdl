@@ -1,7 +1,10 @@
 binds {
-    Print      { screenshot; }
-    Mod+Tab    { toggle-overview; }
-    Mod+Return { spawn "lxterminal"; }
+    Print           { screenshot-screen; }
+    Shift+Print     { spawn "dms" "screenshot" "scroll"; }
+    Ctrl+Print      { screenshot-window; }
+    Ctrl+Alt+Print  { screenshot; }
+    Mod+Tab         { toggle-overview; }
+    Mod+Return      { spawn "lxterminal"; }
 
     // Window actions
     Mod+Q           { close-window; }
