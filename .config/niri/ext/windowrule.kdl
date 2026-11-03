@@ -23,7 +23,7 @@ window-rule {
     tiled-state true
     draw-border-with-background false
     background-effect {
-        xray false
+        //xray false
     }
 }
 window-rule {

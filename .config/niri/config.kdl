@@ -33,7 +33,8 @@ overview {
     workspace-shadow {
         off
     }
-    zoom 0.33
+    //zoom 0.33
+    zoom 0.28
 }
 environment {
     XDG_CURRENT_DESKTOP "niri"
@@ -101,3 +102,6 @@ include "ext/startup.kdl"
 include "ext/binds.kdl"
 include "ext/windowrule.kdl"
 include "ext/layout.kdl"
+
+// DMS Include Configs
+include "dms/input.kdl"
