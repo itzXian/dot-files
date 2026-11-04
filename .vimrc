@@ -335,25 +335,25 @@ syntax on
         \setl syn=json
 colo dracula
     set bg=dark
-    hi Folded	ctermfg=8	ctermbg=NONE
-    hi LineNr	ctermfg=8	ctermbg=NONE
-    hi Search	ctermfg=234	ctermbg=11
-    hi ColorColumn	ctermfg=8	ctermbg=234
-    hi MatchParen	ctermfg=6	ctermbg=234
-    hi DiffAdd	ctermfg=2	ctermbg=234
-    hi DiffDelete	ctermfg=234	ctermbg=234
-    hi DiffChange	ctermfg=7	ctermbg=NONE
-    hi DiffText	ctermfg=3	ctermbg=234
-    hi VertSplit	cterm=NONE	ctermfg=234	ctermbg=234
+    "hi Folded	ctermfg=8	ctermbg=NONE
+    "hi LineNr	ctermfg=8	ctermbg=NONE
+    "hi Search	ctermfg=234	ctermbg=11
+    "hi ColorColumn	ctermfg=8	ctermbg=234
+    "hi MatchParen	ctermfg=6	ctermbg=234
+    "hi DiffAdd	ctermfg=2	ctermbg=234
+    "hi DiffDelete	ctermfg=234	ctermbg=234
+    "hi DiffChange	ctermfg=7	ctermbg=NONE
+    "hi DiffText	ctermfg=3	ctermbg=234
+    "hi VertSplit	cterm=NONE	ctermfg=234	ctermbg=234
     "hi Visual	cterm=reverse
-    hi StatusLine	cterm=NONE	ctermbg=234
-    hi StatusLineNC	cterm=NONE	ctermfg=234	ctermbg=234
-    hi ToolbarLine	cterm=NONE
+    "hi StatusLine	cterm=NONE	ctermbg=234
+    "hi StatusLineNC	cterm=NONE	ctermfg=234	ctermbg=234
+    "hi ToolbarLine	cterm=NONE
     set cursorline
     set cursorcolumn
-    hi CursorLine	term=bold	cterm=bold	ctermbg=0
-    hi CursorColumn	term=bold	cterm=bold	ctermbg=0
-    hi CursorLineNr	cterm=bold	cterm=bold
+    "hi CursorLine	term=bold	cterm=bold	ctermbg=0
+    "hi CursorColumn	term=bold	cterm=bold	ctermbg=0
+    "hi CursorLineNr	cterm=bold	cterm=bold
 
 set directory="~/.vim/swapfiles//,~/tmp,/var/tmp,/tmp"
 set hls
